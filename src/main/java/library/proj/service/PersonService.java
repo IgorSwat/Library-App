@@ -5,6 +5,7 @@ import library.proj.repository.PersonsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class PersonService {
@@ -15,21 +16,23 @@ public class PersonService {
         this.personsRepository = personsRepository;
     }
 
-    public List<Person> getAllUsers() {return personsRepository.findAll();}
+    public List<Person> getAllPersons() {
+        return personsRepository.findAll();
+    }
 
-    public Person getUser(int id) {
+    public Person getPerson(int id) {
         return personsRepository.findById(id);
     }
 
-    public Person getUser(String surname) {
+    public Person getPerson(String surname) {
         return personsRepository.findByLastName(surname);
     }
 
-    public Person getUser(String email, String password) {
+    public Person getPerson(String email, String password) {
         return personsRepository.findByEmailAndPassword(email, password);
     }
 
-    public Person createUser(Person person) {
+    public Person savePerson(Person person) {
         return personsRepository.save(person);
     }
 
