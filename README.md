@@ -28,4 +28,19 @@ Jeśli dane są poprawne, nowy użytkownik zostaje dodany do bazy za pomocą fun
 ## 2. Model bazodanowy
 ![Model bazodanowy](schemat%20bazy.png)
 
+### Tabele
+#### Ratings
+Tabela *Ratings* zawiera oceny książek wystawione przez użytkowników.\
+Każda ocena jest powiązana z konkretną książką oraz użytkownikiem.
+
+#### Books
+Tabela *Books* zawiera informacje o książkach.\
+
+#### Users
+Tabela *Users* zawiera informacje o użytkownikach.\
+
+#### Rentals
+Tabela *Rentals* zawiera informacje o wypożyczeniach książek przez użytkowników.\
+Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem.
+
 ## 3. Model obiektowy
