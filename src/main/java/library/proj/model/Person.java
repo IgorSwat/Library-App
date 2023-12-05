@@ -16,6 +16,7 @@ public class Person {
     @Getter
     private String lastName;
     @Getter
+    @Column(unique=true)
     private String email;
     @Getter
     private String password;

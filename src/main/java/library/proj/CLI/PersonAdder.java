@@ -2,7 +2,6 @@ package library.proj.CLI;
 
 import library.proj.model.Permissions;
 import library.proj.model.Person;
-import library.proj.repository.PersonsRepository;
 import library.proj.service.PersonService;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +41,8 @@ public class PersonAdder {
             System.out.println("Invalid email");
         } else if (!isPasswordValid(password)) {
             System.out.println("Password must have length of at least 8 characters");
+        } else if (personService.exists(email)) {
+            System.out.println("Person with given email already exists");
         } else {
             personService.savePerson(person);
             System.out.println(person);
@@ -49,7 +50,7 @@ public class PersonAdder {
     }
 
     private boolean isEmailValid(String email) {
-        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$";
+        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(regex).matcher(email).matches();
     }
 

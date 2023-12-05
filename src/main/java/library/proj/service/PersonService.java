@@ -5,7 +5,6 @@ import library.proj.repository.PersonsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class PersonService {
@@ -34,6 +33,10 @@ public class PersonService {
 
     public Person savePerson(Person person) {
         return personsRepository.save(person);
+    }
+
+    public boolean exists(String email) {
+        return personsRepository.existsByEmail(email);
     }
 
 }

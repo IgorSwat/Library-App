@@ -29,9 +29,11 @@ public class ProjApplication {
             log.info("-------------------------------");
             personService.getAllPersons().forEach(customer -> log.info(customer.toString()));
 
-            personAdder.invoke();
+            while (true) {
+                personAdder.invoke();
+                personService.getAllPersons().forEach(customer -> log.info(customer.toString()));
+            }
 
-            personService.getAllPersons().forEach(customer -> log.info(customer.toString()));
 
         });
     }
