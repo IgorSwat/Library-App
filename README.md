@@ -44,3 +44,9 @@ Tabela *Rentals* zawiera informacje o wypożyczeniach książek przez użytkowni
 Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem.
 
 ## 3. Model obiektowy
+Prawie wszystkie klasy modelu obiektowego znajdują się w pakiecie *library.proj.model*.\
+Znajdziemy tam klasy *Book*, *Person*, *Rating* oraz *Rental*, które odpowiadają tabelom w bazie danych, oraz 2 enumy: *Permissions* oraz *Status*.\
+Enum *Permissions* zawiera 3 wartości: *ADMIN*, *EMPLOYEE* oraz *USER*, które pomogą nam później w rozróźnieniu jakie uprawnienia w aplikacji posiada użytkownik.\
+Enum *Status* zawiera 2 wartości: *AVAILABLE* oraz *UNAVAILABLE*, które pomogą nam później w rozróźnieniu czy książka jest dostępna do wypożyczenia.
+
+W pakiecie *library.proj.service* znajdują się klasy *BooksService*, *PersonService*, *RatingsService* oraz *RentalsService*, które odpowiadają za komunikację z bazą danych.
