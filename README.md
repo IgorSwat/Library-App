@@ -26,6 +26,6 @@ W przypadku niepoprawnych danych, użytkownik jest proszony o ponowne wprowadzen
 Jeśli dane są poprawne, nowy użytkownik zostaje dodany do bazy za pomocą funkcji *savePerson()* klasy *PersonService* z pakietu *library.proj.service*.
 
 ## 2. Model bazodanowy
-![Model bazodanowy](images/schemat bazy.png)
+![Model bazodanowy](schemat%20bazy.png)
 
 ## 3. Model obiektowy
