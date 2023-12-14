@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import library.proj.LibraryApplication;
+import lombok.Getter;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,7 +19,7 @@ public class LibraryUI extends Application {
 
     @Override
     public void start(Stage stage) {
-        applicationContext.publishEvent(new StageReadyEvent(stage));
+        applicationContext.publishEvent(new StageReadyEvent(stage, applicationContext));
     }
 
     @Override
@@ -28,8 +29,12 @@ public class LibraryUI extends Application {
     }
 
     public static class StageReadyEvent extends ApplicationEvent {
-        public StageReadyEvent(Stage stage) {
+        @Getter
+        private final ConfigurableApplicationContext context;
+
+        public StageReadyEvent(Stage stage, ConfigurableApplicationContext context) {
             super(stage);
+            this.context = context;
         }
 
         public Stage getStage() {
