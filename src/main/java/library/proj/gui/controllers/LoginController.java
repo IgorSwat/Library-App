@@ -2,11 +2,13 @@ package library.proj.gui.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import library.proj.model.Person;
 import library.proj.service.PersonService;
 import org.springframework.context.ConfigurableApplicationContext;
 
 public class LoginController {
+    private final Stage stage;
     private final ConfigurableApplicationContext context;
     private final PersonService personService;
 
@@ -16,7 +18,8 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    public LoginController(ConfigurableApplicationContext context) {
+    public LoginController(Stage stage, ConfigurableApplicationContext context) {
+        this.stage = stage;
         this.context = context;
         this.personService = context.getBean(PersonService.class);
     }

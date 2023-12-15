@@ -1,11 +1,36 @@
 package library.proj.gui.scenes;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
+import library.proj.gui.controllers.LoginController;
 import org.springframework.context.ConfigurableApplicationContext;
 
-// An interface implemented by each scene creators
-// A scene creator is a class responsible for creating appropriate JavaFX scene from FXML file and (if needed) linking it
-// with correct controller class. Every scene used inside app should have its own creator.
-public interface SceneCreator {
-    Scene createScene(ConfigurableApplicationContext context);
+import java.io.IOException;
+
+public abstract class SceneCreator implements SceneCreatorIf {
+    private final String sceneName;
+    private final String fxmlSource;
+    private final int sceneWidth = 800;
+    private final int sceneHeight = 600;
+
+    public SceneCreator(String sceneName, String fxmlSource) {
+        this.sceneName = sceneName;
+        this.fxmlSource = fxmlSource;
+    }
+
+    public Scene createScene(Stage stage, ConfigurableApplicationContext context) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlSource));
+            setupController(fxmlLoader, stage, context);
+            Parent root = fxmlLoader.load();
+            return new Scene(root, sceneWidth, sceneHeight);
+        }
+        catch (IOException exc) {
+            throw new RuntimeException("Unable to load " + sceneName);
+        }
+    }
+
+    abstract void setupController(FXMLLoader loader, Stage stage, ConfigurableApplicationContext context);
 }

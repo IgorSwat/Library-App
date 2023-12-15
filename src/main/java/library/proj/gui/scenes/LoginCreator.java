@@ -1,26 +1,19 @@
 package library.proj.gui.scenes;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.stage.Stage;
 import library.proj.gui.controllers.LoginController;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.IOException;
+public class LoginCreator extends SceneCreator {
 
-public class LoginCreator implements SceneCreator {
+    public LoginCreator() {
+        super("Login scene", "/loginView.fxml");
+    }
 
-    public Scene createScene(ConfigurableApplicationContext context) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/loginView.fxml"));
-            LoginController controller = new LoginController(context);
-            fxmlLoader.setController(controller);
-            Parent root = fxmlLoader.load();
-            return new Scene(root, 800, 600);
-        }
-        catch (IOException exc) {
-            throw new RuntimeException("Unable to load login scene");
-        }
+    void setupController(FXMLLoader loader, Stage stage, ConfigurableApplicationContext context) {
+        LoginController controller = new LoginController(stage, context);
+        loader.setController(controller);
     }
 
 }

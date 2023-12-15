@@ -1,7 +1,7 @@
 package library.proj.gui.events;
 
 import javafx.stage.Stage;
-import library.proj.gui.scenes.SceneCreator;
+import library.proj.gui.scenes.SceneCreatorIf;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,12 +11,12 @@ public class ChangeSceneEvent extends ApplicationEvent {
     @Getter
     private final ConfigurableApplicationContext context;
     @Getter
-    private final SceneCreator sceneCreator;
+    private final SceneCreatorIf sceneCreatorIf;
 
-    public ChangeSceneEvent(Stage stage, ConfigurableApplicationContext context, SceneCreator creator) {
+    public ChangeSceneEvent(Stage stage, ConfigurableApplicationContext context, SceneCreatorIf creator) {
         super(stage);
         this.context = context;
-        this.sceneCreator = creator;
+        this.sceneCreatorIf = creator;
     }
 
     public Stage getStage() {

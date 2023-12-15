@@ -1,4 +1,4 @@
-package library.proj.gui;
+package library.proj.gui.scenes;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,7 +12,7 @@ public class SceneHandler implements ApplicationListener<ChangeSceneEvent> {
     @Override
     public void onApplicationEvent(ChangeSceneEvent event) {
         Stage stage = event.getStage();
-        Scene scene = event.getSceneCreator().createScene(event.getContext());
+        Scene scene = event.getSceneCreatorIf().createScene(event.getStage(), event.getContext());
         stage.setScene(scene);
         stage.setTitle("Library app");
         stage.show();
