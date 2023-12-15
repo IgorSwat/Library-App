@@ -4,8 +4,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import library.proj.model.Person;
 import library.proj.service.PersonService;
+import org.springframework.context.ConfigurableApplicationContext;
 
 public class LoginController {
+    private final ConfigurableApplicationContext context;
     private final PersonService personService;
 
     @FXML
@@ -14,7 +16,10 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    public LoginController(PersonService personService) {this.personService = personService;}
+    public LoginController(ConfigurableApplicationContext context) {
+        this.context = context;
+        this.personService = context.getBean(PersonService.class);
+    }
 
     @FXML
     private void handleLogin() {

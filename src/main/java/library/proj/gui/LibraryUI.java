@@ -4,11 +4,12 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import library.proj.LibraryApplication;
-import lombok.Getter;
+import library.proj.gui.events.ChangeSceneEvent;
+import library.proj.gui.scenes.LoginCreator;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
+// Main JavaFX gui application
 public class LibraryUI extends Application {
     private ConfigurableApplicationContext applicationContext;
 
@@ -19,26 +20,12 @@ public class LibraryUI extends Application {
 
     @Override
     public void start(Stage stage) {
-        applicationContext.publishEvent(new StageReadyEvent(stage, applicationContext));
+        applicationContext.publishEvent(new ChangeSceneEvent(stage, applicationContext, new LoginCreator()));
     }
 
     @Override
     public void stop() {
         applicationContext.close();
         Platform.exit();
-    }
-
-    public static class StageReadyEvent extends ApplicationEvent {
-        @Getter
-        private final ConfigurableApplicationContext context;
-
-        public StageReadyEvent(Stage stage, ConfigurableApplicationContext context) {
-            super(stage);
-            this.context = context;
-        }
-
-        public Stage getStage() {
-            return ((Stage) getSource());
-        }
     }
 }
