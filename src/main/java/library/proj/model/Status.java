@@ -1,15 +1,15 @@
 package library.proj.model;
 
 public enum Status {
-    AVAILABLE(true),
-    NOT_AVAILABLE(false);
+    AVAILABLE(0),
+    NOT_AVAILABLE(1);
 
-    private final boolean status;
+    private final int status;
 
-    Status(boolean status) {this.status = status;}
+    Status(int status) {this.status = status;}
 
     @Override
     public String toString() {
-        return status ? "available" : "not available";
+        return status == 0 ? "available" : "not available";
     }
 }

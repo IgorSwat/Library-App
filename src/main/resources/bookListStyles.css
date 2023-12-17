@@ -1,0 +1,44 @@
+.books-panel {
+    -fx-alignment: top-center;
+    -fx-spacing: 10;
+    -fx-padding: 50;
+}
+
+.book-list {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+}
+
+.book-list-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.book-list-row {
+    -fx-spacing: 30;
+    -fx-alignment: center;
+}
+
+.rounded-button {
+    -fx-background-color: #ccb491;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 5, 5);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 15;
+    -fx-border-color: transparent;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.rounded-button:hover {
+    -fx-background-color: #edc993;
+    -fx-cursor: hand;
+}
+
+.book-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.book-author {
+}

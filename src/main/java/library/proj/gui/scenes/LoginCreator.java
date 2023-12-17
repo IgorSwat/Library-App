@@ -11,9 +11,9 @@ public class LoginCreator extends SceneCreator {
         super("Login scene", "/loginView.fxml");
     }
 
-    void setupController(FXMLLoader loader, Stage stage, ConfigurableApplicationContext context) {
+    void setupController(Stage stage, ConfigurableApplicationContext context) {
         LoginController controller = new LoginController(stage, context);
-        loader.setController(controller);
+        fxmlLoader.setController(controller);
     }
 
 }

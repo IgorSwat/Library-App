@@ -5,6 +5,7 @@ import library.proj.repository.BooksRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BooksService {
@@ -14,6 +15,10 @@ public class BooksService {
     public BooksService(BooksRepository booksRepository) {this.booksRepository = booksRepository;}
 
     public List<Book> getAllBooks() {return booksRepository.findAll();}
+
+    public List<Book> getAvailableBooks() {
+        return getAllBooks().stream().filter(Book::isAvailable).collect(Collectors.toList());
+    }
 
     public Book getBook(int id) {return booksRepository.findById(id);}
 
