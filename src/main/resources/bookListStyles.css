@@ -1,17 +1,70 @@
-.books-panel {
-    -fx-alignment: top-center;
+.books-navbar {
+    -fx-pref-height: 60;
+    -fx-pref-width: 800;
+    -fx-background-color: #b09368;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: #3b2506;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 2, 5);
+}
+
+.view-title {
+    -fx-alignment: center-left;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3b2506;
+    -fx-padding: 10 10 10 20;
+}
+
+.buttons-panel {
+    -fx-alignment: center-right;
+    -fx-padding: 0 20 0 0;
     -fx-spacing: 10;
-    -fx-padding: 50;
+}
+
+.nav-button {
+    -fx-background-color: #fcdca4;
+    -fx-border-width: 2;
+    -fx-border-color: #3b2506;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.6), 10, 0, 0, 0);
+}
+
+.nav-button:pressed {
+    -fx-background-color: #fce3b6;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.9), 12, 0, 0, 0);
+    -fx-border-insets: 0;
+}
+
+.nav-button-image {
+}
+
+.scrollable-panel-container {
+}
+
+.scrollable-panel-background {
+    -fx-fit-to-width: 800;
+    -fx-fit-to-height: 540;
+    -fx-opacity: 0.45;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
 }
 
 .book-list {
-    -fx-alignment: center;
+    -fx-alignment: top-center;
+    -fx-padding: 30;
     -fx-spacing: 20;
-}
-
-.book-list-title {
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
+    -fx-background-color: transparent;
 }
 
 .book-list-row {

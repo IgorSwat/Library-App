@@ -22,7 +22,7 @@ public class LibraryUI extends Application {
     @Override
     public void start(Stage stage) {
         //applicationContext.publishEvent(new ChangeSceneEvent(stage, applicationContext, new LoginCreator()));
-        applicationContext.publishEvent(new ChangeSceneEvent(stage, applicationContext, new BookListCreator()));
+        applicationContext.publishEvent(new ChangeSceneEvent(stage, applicationContext, new LoginCreator()));
     }
 
     @Override
