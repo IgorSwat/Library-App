@@ -41,20 +41,24 @@ public class Book {
 
     public void updateViews(int views) {this.views = views;}
 
-    @Override
-    public String toString() {
-        return title + author + "   |   " + status;
-    }
-
     public void registerRental(Rental rental) {
         if (rentals == null)
             rentals = new ArrayList<>();
         rentals.add(rental);
     }
 
-    void addRating(Rating rating) {
+    public void addRating(Rating rating) {
         if (ratings == null)
             ratings = new ArrayList<>();
         ratings.add(rating);
+    }
+
+    public boolean isAvailable() {
+        return status == Status.AVAILABLE.ordinal();
+    }
+
+    @Override
+    public String toString() {
+        return title + " " + author + "   |   " + Status.values()[status];
     }
 }

@@ -4,33 +4,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import library.proj.gui.controllers.LoginController;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
 public abstract class SceneCreator implements SceneCreatorIf {
     private final String sceneName;
-    private final String fxmlSource;
-    private final int sceneWidth = 800;
-    private final int sceneHeight = 600;
+    private final String stylesheetSource;
 
-    public SceneCreator(String sceneName, String fxmlSource) {
+    protected final FXMLLoader fxmlLoader;
+
+    private static final int sceneWidth = 800;
+    private static final int sceneHeight = 600;
+
+    public SceneCreator(String sceneName, String fxmlSource, String stylesheetSource) {
         this.sceneName = sceneName;
-        this.fxmlSource = fxmlSource;
+        this.fxmlLoader = new FXMLLoader(getClass().getResource(fxmlSource));
+        this.stylesheetSource = stylesheetSource;
     }
 
     public Scene createScene(Stage stage, ConfigurableApplicationContext context) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlSource));
-            setupController(fxmlLoader, stage, context);
+            setupController(stage, context);
             Parent root = fxmlLoader.load();
-            return new Scene(root, sceneWidth, sceneHeight);
+            Scene scene = new Scene(root, sceneWidth, sceneHeight);
+            if (!stylesheetSource.isEmpty())
+                scene.getStylesheets().add(getClass().getResource(stylesheetSource).toExternalForm());
+            return scene;
         }
         catch (IOException exc) {
             throw new RuntimeException("Unable to load " + sceneName);
         }
     }
 
-    abstract void setupController(FXMLLoader loader, Stage stage, ConfigurableApplicationContext context);
+    abstract void setupController(Stage stage, ConfigurableApplicationContext context);
 }

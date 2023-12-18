@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox styleClass="books-navbar">
+        <Label text="Lista książek" styleClass="view-title"/>
+
+        <HBox HBox.hgrow="ALWAYS" styleClass="buttons-panel">
+            <Button fx:id="addBookButton" styleClass="nav-button" onAction="#handleAddBookClick">
+                <graphic>
+                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                        <Image url="/images/plusIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button styleClass="nav-button">
+                <graphic>
+                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                        <Image url="/images/homeIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button styleClass="nav-button">
+                <graphic>
+                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                        <Image url="/images/settingsIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </HBox>
+
+    <StackPane styleClass="scrollable-panel-container">
+        <ImageView styleClass="scrollable-panel-background" fitHeight="540" fitWidth="800">
+            <Image url="/images/library-background.jpg" />
+        </ImageView>
+        <ScrollPane styleClass="scroll-pane">
+            <VBox fx:id="bookList" styleClass="book-list" >
+            </VBox>
+        </ScrollPane>
+    </StackPane>
+</VBox>

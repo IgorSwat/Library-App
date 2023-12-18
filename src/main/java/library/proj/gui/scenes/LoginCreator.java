@@ -8,12 +8,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class LoginCreator extends SceneCreator {
 
     public LoginCreator() {
-        super("Login scene", "/loginView.fxml");
+        super("Login scene", "/loginView.fxml", "/loginStyles.css");
     }
 
-    void setupController(FXMLLoader loader, Stage stage, ConfigurableApplicationContext context) {
+    void setupController(Stage stage, ConfigurableApplicationContext context) {
         LoginController controller = new LoginController(stage, context);
-        loader.setController(controller);
+        fxmlLoader.setController(controller);
     }
 
 }

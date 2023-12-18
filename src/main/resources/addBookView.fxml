@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox styleClass="book-property-list" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Dodaj egzemplarz" styleClass="book-property-list-header"/>
+    <HBox styleClass="book-property-entry">
+        <Label text="Tytuł:" styleClass="book-property-label"/>
+        <TextField fx:id="titleField"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <Label text="Autor:" styleClass="book-property-label"/>
+        <TextField fx:id="authorField"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <Label text="Opis:" styleClass="book-property-label"/>
+        <TextArea prefRowCount="8" prefColumnCount="15" wrapText="true" fx:id="descriptionField"/>
+    </HBox>
+    <HBox styleClass="book-property-entry" style="-fx-padding: 0 0 20 0">
+        <Label text="Dostępność:" styleClass="book-property-label"/>
+
+        <RadioButton text="Dostępne" selected="true">
+            <toggleGroup>
+                <ToggleGroup fx:id="toggleGroup" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton text="Niedostępne" toggleGroup="$toggleGroup" />
+    </HBox>
+    <Button text="Dodaj" styleClass="add-button" onAction="#handleAddClick"/>
+    <Label fx:id="errorLabel" styleClass="error-label"/>
+</VBox>
