@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox styleClass="login-container" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Rejestracja użytkownika" styleClass="login-title"/>
+
+    <GridPane alignment="CENTER" hgap="20" vgap="20">
+        <Label text="Imię:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField styleClass="register-input-short" fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Nazwisko:" styleClass="login-label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <TextField styleClass="register-input-short" fx:id="surnameField" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+        <Label text="Email:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField styleClass="register-input-normal" fx:id="emailField" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+
+        <Label text="Hasło:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <PasswordField styleClass="register-input-normal" fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+
+        <Label text="Powtórz hasło:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <PasswordField styleClass="register-input-normal" fx:id="repeatPasswordField" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+
+        <HBox styleClass="registration-login-panel" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4">
+            <Button text="Zarejestruj" styleClass="login-button" onAction="#handleRegister"/>
+            <Label text="Powrót do logowania" styleClass="register-link" onMouseClicked="#handleLoginRedirect"/>
+        </HBox>
+    </GridPane>
+
+    <Label styleClass="error-label" fx:id="errorLabel" />
+</VBox>

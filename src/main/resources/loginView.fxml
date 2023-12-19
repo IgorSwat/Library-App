@@ -10,10 +10,13 @@
         <Label text="Email:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField styleClass="login-input" fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-        <Label text="Password:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label text="Hasło:" styleClass="login-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <PasswordField styleClass="login-input" fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Button text="Zaloguj" styleClass="login-button" onAction="#handleLogin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <HBox styleClass="login-registration-panel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button text="Zaloguj" styleClass="login-button" onAction="#handleLogin"/>
+            <Label text="Zarejestruj się" styleClass="register-link" onMouseClicked="#handleRegisterRedirect"/>
+        </HBox>
     </GridPane>
 
     <Label styleClass="error-label" fx:id="errorLabel" />

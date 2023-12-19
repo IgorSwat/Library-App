@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.scenes.BookListCreator;
+import library.proj.gui.scenes.RegisterCreator;
 import library.proj.model.Person;
 import library.proj.service.PersonService;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -44,6 +45,11 @@ public class LoginController {
                 context.publishEvent(new ChangeSceneEvent(stage, context, new BookListCreator()));
             }
         }
+    }
+
+    @FXML
+    public void handleRegisterRedirect() {
+        context.publishEvent(new ChangeSceneEvent(stage, context, new RegisterCreator()));
     }
 
     private boolean validateInput(String email, String password) {

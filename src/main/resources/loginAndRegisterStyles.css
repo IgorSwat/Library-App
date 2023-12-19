@@ -24,8 +24,33 @@
     -fx-font-size: 16;
 }
 
+.register-link {
+    -fx-padding: 10 10 10 20;
+    -fx-font-size: 14;
+}
+
+.register-link:hover {
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
 .error-label {
     -fx-padding: 15 0 0 0;
     -fx-font-size: 14;
     -fx-text-fill: red;
+}
+
+.register-input-normal {
+    -fx-font-size: 16;
+    -fx-focus-color: #3b2506;
+}
+
+.register-input-short {
+    -fx-pref-width: 120;
+    -fx-font-size: 16;
+    -fx-focus-color: #3b2506;
+}
+
+.registration-login-panel {
+    -fx-padding: 10 0 0 0;
 }
