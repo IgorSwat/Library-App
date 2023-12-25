@@ -1,7 +1,9 @@
 package library.proj.gui.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -9,8 +11,8 @@ import library.proj.model.Book;
 import library.proj.service.BooksService;
 import library.proj.service.RentalsService;
 import org.springframework.context.ConfigurableApplicationContext;
+import java.util.Date;
 
-import java.util.Objects;
 
 
 public class RentBookController {
@@ -26,6 +28,12 @@ public class RentBookController {
     private Label authorLabel;
     @FXML
     ImageView coverImage;
+    @FXML
+    TextField customerFirstName;
+    @FXML
+    TextField customerLastName;
+    @FXML
+    DatePicker startDate;
 
     public RentBookController(Stage primaryStage, Stage stage, ConfigurableApplicationContext context, Book book) {
         this.primaryStage = primaryStage;
@@ -38,7 +46,9 @@ public class RentBookController {
 
     @FXML
     public void handleRentClick() {
-        System.out.println("Kliknięto wypożycz " + book.getTitle());
+        var firstName = customerFirstName.getText();
+        var lastName = customerLastName.getText();
+//        Date date = startDate.getValue();
     }
 
     public void initialize() {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -23,15 +24,15 @@ public class Rental {
     private Book book;
     @Temporal(TemporalType.DATE)
     @Getter
-    private Date rentalDate;
+    private LocalDate rentalDate;
     @Temporal(TemporalType.DATE)
     @Getter
     @Setter
-    private Date returnDate;
+    private LocalDate returnDate;
 
     public Rental() {}
 
-    public Rental(Person person, Book book, Date rentalDate) {
+    public Rental(Person person, Book book, LocalDate rentalDate) {
         this.person = person;
         this.book = book;
         this.rentalDate = rentalDate;

@@ -23,7 +23,7 @@
     </HBox>
     <HBox styleClass="book-property-entry">
       <children>
-         <DatePicker promptText="Od dnia" />
+         <DatePicker fx:id="startDate" promptText="Od dnia" />
       </children>
     </HBox>
 
