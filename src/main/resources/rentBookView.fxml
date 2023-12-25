@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox styleClass="book-property-list" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Wypożycz książkę" styleClass="book-property-list-header"/>
+    <HBox styleClass="book-property-entry">
+        <Label text="Tytuł:" styleClass="book-property-label"/>
+        <Label fx:id="titleLabel" styleClass="book-property-label"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <Label text="Autor:" styleClass="book-property-label"/>
+        <Label fx:id="authorLabel" styleClass="book-property-label"/>
+    </HBox>
+
+    <Button text="Wypożycz" styleClass="add-button" onAction="#handleRentClick"/>
+    <Label fx:id="errorLabel" styleClass="error-label"/>
+</VBox>
