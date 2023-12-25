@@ -26,12 +26,13 @@ public class LibraryApplication {
             personService.savePerson(new Person("Baran", "Adamski", "baran@gmail.com", "password", Permissions.USER));
 
             addBookExamples(booksService, 18);
+            booksService.createBook(new Book("Limes Inferior", "Janusz Zajdel", "https://iskry.com.pl/wp-content/uploads/2017/08/549-1500-Limes-inferior-1987.jpg", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", Status.AVAILABLE.ordinal()));
         });
     }
 
     private void addBookExamples(BooksService booksService, int noExamples) {
         for (int i = 0; i < noExamples; i++) {
-            booksService.createBook(new Book("Example " + Integer.toString(i + 1), "Anonymous", "-",
+            booksService.createBook(new Book("Example " + (i + 1), "Anonymous", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/640px-No-Image-Placeholder.svg.png",
                     "Some description", Status.AVAILABLE.ordinal()));
         }
     }

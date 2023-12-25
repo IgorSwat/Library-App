@@ -2,11 +2,15 @@ package library.proj.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import library.proj.model.Book;
 import library.proj.service.BooksService;
 import library.proj.service.RentalsService;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Objects;
 
 
 public class RentBookController {
@@ -20,6 +24,8 @@ public class RentBookController {
     private Label titleLabel;
     @FXML
     private Label authorLabel;
+    @FXML
+    ImageView coverImage;
 
     public RentBookController(Stage primaryStage, Stage stage, ConfigurableApplicationContext context, Book book) {
         this.primaryStage = primaryStage;
@@ -38,5 +44,7 @@ public class RentBookController {
     public void initialize() {
         titleLabel.setText(book.getTitle());
         authorLabel.setText(book.getAuthor());
+        Image cover = new Image(book.getCover(), true);
+        coverImage.setImage(cover);
     }
 }

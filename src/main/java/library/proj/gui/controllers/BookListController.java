@@ -74,6 +74,9 @@ public class BookListController {
     }
 
     private void handleBookEntryDrag(Book book) {
+        if (Permissions.values()[LoginController.loggedAccount.getPermissions()] == Permissions.USER) {
+            return;
+        }
         context.publishEvent(new OpenDialogEvent("Wypożyczanie książki", 360, 500,
                 stage, context, new RentBookCreator(stage, book)));
     }
