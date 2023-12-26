@@ -45,7 +45,7 @@ Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem
 # 3. Model obiektowy
 ## 1.  Pakiet: *library.proj*
 ### 1.1 LibraryApplication
-- **Anotacje**:
+- **Adnotacje**:
   - *@SpringBootApplication*: Oznacza klasę jako punkt startowy aplikacji Spring Boot, automatycznie konfigurując kontekst aplikacji.
   - *@Bean*: Oznacza metodę jako źródło zarządzanego przez Springa komponentu.
 - **Metody**:
@@ -55,7 +55,7 @@ Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem
 
 ## 2. Pakiet: *library.proj.service*
 ### 2.1 RentalsService
-- **Anotacje**:
+- **Adnotacje**:
     - *@Service*: Oznacza klasę jako komponent serwisowy, umożliwiający Springowi zarządzanie nią.
 - **Pola**:
     - *private final RentalsRepository rentalsRepository*: Repozytorium (RentalsRepository) służące do komunikacji z bazą danych w kontekście wypożyczeń.
@@ -66,7 +66,7 @@ Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem
     - *createRental(Rental rental)*: Tworzy nowe wypożyczenie i zapisuje je w bazie danych.
 
 ### 2.2 BooksService
-- **Anotacje**:
+- **Adnotacje**:
     - *@Service*: Oznacza klasę jako komponent serwisowy, umożliwiający Springowi zarządzanie nią.
 - **Pola**:
     - *private final BooksRepository booksRepository*: Repozytorium (BooksRepository) służące do komunikacji z bazą danych w kontekście książek.
@@ -78,7 +78,7 @@ Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem
     - *createBook(Book book)*: Tworzy nową książkę i zapisuje ją w bazie danych.
 
 ### 2.3 PersonService
-- **Anotacje**:
+- **Adnotacje**:
     - *@Service*: Oznacza klasę jako komponent serwisowy, umożliwiający Springowi zarządzanie nią.
 - **Pola**:
     - *private final PersonRepository personRepository*: Repozytorium (PersonRepository) służące do komunikacji z bazą danych w kontekście osób.
@@ -91,7 +91,7 @@ Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem
     - *exists(String email)*: Sprawdza, czy osoba o podanym adresie email istnieje w bazie danych.
 
 ### 2.4 RatingsService
-- **Anotacje**:
+- **Adnotacje**:
     - *@Service*: Oznacza klasę jako komponent serwisowy, umożliwiający Springowi zarządzanie nią.
 - **Pola**:
     - *private final RatingsRepository ratingsRepository*: Repozytorium (RatingsRepository) służące do komunikacji z bazą danych w kontekście ocen.
@@ -104,20 +104,20 @@ Każde wypożyczenie jest powiązane z konkretną książką oraz użytkownikiem
 ## 3. Pakiet: *library.proj.repository*
 Pakiet zawiera interfejsy repozytoriów, które służą do komunikacji z bazą danych. Wszystkie repozytoria dziedziczą po interfejsie JpaRepository, który zawiera podstawowe metody do komunikacji z bazą danych.
 ### 3.1 RentalsRepository
-- **Anotacje**:
+- **Adnotacje**:
     - *@Repository*: Oznacza klasę jako komponent repozytorium, umożliwiający Springowi zarządzanie nią.
 - **Metody**:
     - *findById(int id)*: Znajduje wypożyczenie o określonym identyfikatorze.
 
 ### 3.2 BooksRepository
-- **Anotacje**:
+- **Adnotacje**:
     - *@Repository*: Oznacza klasę jako komponent repozytorium, umożliwiający Springowi zarządzanie nią.
 - **Metody**:
     - *findById(int id)*: Znajduje książkę o określonym identyfikatorze.
     - *findByTitleAndAuthor*(String title, String author): Znajduje książkę na podstawie tytułu i autora.
 
 ### 3.3 PersonRepository
-- **Anotacje**:
+- **Adnotacje**:
     - *@Repository*: Oznacza klasę jako komponent repozytorium, umożliwiający Springowi zarządzanie nią.
 - **Metody**:
     - *findById(int id)*: Znajduje osobę o określonym identyfikatorze.
@@ -127,14 +127,14 @@ Pakiet zawiera interfejsy repozytoriów, które służą do komunikacji z bazą 
     - *existsByEmail(String email)*: Sprawdza, czy osoba o podanym adresie email istnieje.
 
 ### 3.4 RatingsRepository
-- **Anotacje**:
+- **Adnotacje**:
     - *@Repository*: Oznacza klasę jako komponent repozytorium, umożliwiający Springowi zarządzanie nią.
 - **Metody**:
     - *findById(int id)*: Znajduje ocenę o określonym identyfikatorze.
 
 ## 4. Pakiet: *library.proj.model*
 ### 4.1 Book
-- **Anotacje**:
+- **Adnotacje**:
     - *@Entity*: Oznacza klasę jako encję JPA, co umożliwia mapowanie obiektów tej klasy na rekordy w bazie danych.
     - *@Id*: Oznacza pole id jako identyfikator encji.
     - *@GeneratedValue*: Określa strategię generowania wartości dla pola id.
@@ -168,7 +168,7 @@ Pakiet zawiera interfejsy repozytoriów, które służą do komunikacji z bazą 
     - *public String toString()*: Zwraca czytelny opis statusu.
 
 ### 4.3 Rental
-- **Anotacje**:
+- **Adnotacje**:
     - *@Entity*: Oznacza klasę jako encję JPA.
     - *@Id*: Oznacza pole id jako identyfikator encji.
     - *@GeneratedValue*: Określa strategię generowania wartości dla pola id.
@@ -185,7 +185,7 @@ Pakiet zawiera interfejsy repozytoriów, które służą do komunikacji z bazą 
     - *public Rental(Person person, Book book, Date rentalDate)*: Konstruktor inicjalizujący pola klasy oraz dodający wypożyczenie do listy wypożyczeń osoby i książki.
 
 ### 4.4 Rating
-- **Anotacje**:
+- **Adnotacje**:
     - *@Entity*: Oznacza klasę jako encję JPA.
     - *@Id*: Oznacza pole id jako identyfikator encji.
     - *@GeneratedValue*: Określa strategię generowania wartości dla pola id.
@@ -201,7 +201,7 @@ Pakiet zawiera interfejsy repozytoriów, które służą do komunikacji z bazą 
     - *public Rating(Person person, Book book, int rating)*: Konstruktor inicjalizujący pola klasy oraz dodający ocenę do listy ocen osoby i książki.
 
 ### 4.5 Person
-- **Anotacje**:
+- **Adnotacje**:
     - *@Entity*: Oznacza klasę jako encję JPA.
     - *@Id*: Oznacza pole id jako identyfikator encji.
     - *@GeneratedValue*: Określa strategię generowania wartości dla pola id.
@@ -235,11 +235,259 @@ Pakiet zawiera interfejsy repozytoriów, które służą do komunikacji z bazą 
     - *public String toString()*: Zwraca czytelny opis poziomu uprawnień.
 
 ## 5. Pakiet: *library.proj.gui*
+### 5.1 LibraryUI
+Klasa LibraryUI dziedziczy po klasie Application z JavaFX, co wskazuje, że jest to główna klasa aplikacji JavaFX.
+- **Pola**:
+    - *private ConfigurableApplicationContext applicationContext*: Pole przechowujące kontekst aplikacji Spring.
+- **Metody**:
+    - *public void init()*: Metoda inicjalizująca aplikację, uruchamiająca kontekst Spring.
+    - *public void start(Stage stage)*: Metoda startująca aplikację, wywołująca zmianę sceny na scenę logowania.
+    - *public void stop()*: Metoda zamykająca kontekst Spring i zamykająca platformę JavaFX.
 
 ## 6. Pakiet: *library.proj.gui.controllers*
+Każdy plik kontrolera odpowiada za obsługę interakcji użytkownika w danym widoku.
+W każdej klasie wykorzystywane są adnotacje @FXML do wstrzykiwania elementów interfejsu użytkownika (np. pola tekstowe, przyciski).
+### 6.1 AddBookController
+- **Pola**:
+    - *private final Stage primaryStage*: Przechowuje referencję do głównego okna aplikacji.
+    - *private final Stage stage*: Przechowuje referencję do okna kontrolera.
+    - *private final ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private final BooksService booksService*: Serwis do obsługi operacji na książkach.
+    - *@FXML private TextField titleField*: Pole do wprowadzania tytułu nowej książki.
+    - *@FXML private TextField authorField*: Pole do wprowadzania autora nowej książki.
+    - *@FXML private TextArea descriptionField*: Pole do wprowadzania opisu nowej książki.
+    - *@FXML private ToggleGroup toggleGroup*: Grupa przycisków do wyboru statusu książki (dostępna/niedostępna).
+    - *@FXML private Label errorLabel*: Etykieta do wyświetlania komunikatów błędu.
+- **Metody**:
+    - *public AddBookController(Stage primaryStage, Stage stage, ConfigurableApplicationContext context)*: Konstruktor, inicjalizuje pola.
+    - *@FXML public void handleAddClick()*: Obsługuje zdarzenie dodania nowej książki.
+    - *private boolean validateInput(String title, String author)*: Sprawdza poprawność wprowadzonych danych.
+
+### 6.2 BookDetailsController
+- **Pola**:
+    - *private Book book*: Przechowuje informacje o książce.
+    - *private Stage stage*: Przechowuje referencję do okna kontrolera.
+    - *private ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private SceneCreator previousScene*: Przechowuje poprzednią scenę.
+    - *@FXML public Label bookTitleField*: Etykieta do wyświetlania tytułu książki.
+    - *@FXML public Label authorField*: Etykieta do wyświetlania autora książki.
+    - *@FXML public Label coverField*: Etykieta do wyświetlania okładki książki.
+    - *@FXML public Label contentField*: Etykieta do wyświetlania treści książki.
+    - *@FXML public Label statusField*: Etykieta do wyświetlania statusu dostępności książki.
+    - *@FXML private ImageView imageViewField*: Pole do wyświetlania obrazu okładki książki.
+- **Metody**:
+    - *public BookDetailsController(Stage stage, ConfigurableApplicationContext context, Book book, SceneCreator previousScene)*: Konstruktor, inicjalizuje pola.
+    - *public void setFields()*: Ustawia wartości pól etykiet na podstawie informacji o książce.
+
+### 6.3 BookListController
+- **Pola**:
+    - *private final Stage stage*: Przechowuje referencję do głównego okna aplikacji.
+    - *private final ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private final BooksService booksService*: Serwis do obsługi operacji na książkach.
+    - *@FXML private VBox bookList*: Kontener do wyświetlania listy książek.
+    - *@FXML private Button addBookButton*: Przycisk do dodawania nowej książki.
+    - *private static final int maxEntriesInRow*: Maksymalna liczba książek w jednym rzędzie.
+    - *private static final double entriesSpacing*: Odległość między pozycjami książek.
+- **Metody**:
+    - *public BookListController(Stage stage, ConfigurableApplicationContext context)*: Konstruktor, inicjalizuje pola.
+    - *public void updateBookList()*: Aktualizuje listę książek w interfejsie użytkownika.
+    - *public void updateNavbar()*: Aktualizuje pasek nawigacyjny w zależności od uprawnień użytkownika.
+    - *@FXML public void handleAddBookClick()*: Obsługuje zdarzenie dodania nowej książki.
+    - *public void handleBookDetailsClicked(MouseEvent event, Book book)*: Obsługuje kliknięcie na pozycję z listy książek.
+    - *public void handleUserClicked()*: Obsługuje kliknięcie na użytkownika.
+
+### 6.4 LoginController
+- **Pola**:
+    - *private final Stage stage*: Przechowuje referencję do głównego okna aplikacji.
+    - *private final ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private final PersonService personService*: Serwis do obsługi operacji na osobach.
+    - *@FXML private TextField emailField*: Pole do wprowadzania adresu e-mail.
+    - *@FXML private PasswordField passwordField*: Pole do wprowadzania hasła.
+    - *@FXML private Label errorLabel*: Etykieta do wyświetlania komunikatów błędu.
+    - *public static Person loggedAccount = null*: Statyczne pole przechowujące zalogowanego użytkownika.
+- **Metody**:
+    - *public LoginController(Stage stage, ConfigurableApplicationContext context)*: Konstruktor, inicjalizuje pola.
+    - *@FXML public void handleLogin()*: Obsługuje zdarzenie logowania.
+    - *@FXML public void handleRegisterRedirect()*: Obsługuje przekierowanie do ekranu rejestracji.
+    - *private boolean validateInput(String email, String password)*: Sprawdza poprawność wprowadzonych danych.
+
+### 6.5 MyRentalsController
+- **Pola**:
+    - *private final Stage stage*: Przechowuje referencję do głównego okna aplikacji.
+    - *private final ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private final RentalsService rentalsService*: Serwis do obsługi operacji na wypożyczeniach.
+    - *@FXML private VBox vBoxContainer*: Kontener do wyświetlania listy wypożyczonych książek.
+- **Metody**:
+    - *public MyRentalsController(Stage stage, ConfigurableApplicationContext context)*: Konstruktor, inicjalizuje pola.
+    - *@FXML private void handleBackButton()*: Obsługuje przycisk powrotu.
+    - *public void fillContainer()*: Wypełnia kontener listą wypożyczonych książek.
+    - *public void handleBookDetailsClicked(MouseEvent event, Book book)*: Obsługuje kliknięcie na pozycję z listy książek.
+
+### 6.6 RegisterController
+- **Pola**:
+    - *private final Stage stage*: Przechowuje referencję do głównego okna aplikacji.
+    - *private final ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private final PersonService personService*: Serwis do obsługi operacji na osobach.
+    - *@FXML private TextField nameField*: Pole do wprowadzania imienia.
+    - *@FXML private TextField surnameField*: Pole do wprowadzania nazwiska.
+    - *@FXML private TextField emailField*: Pole do wprowadzania adresu e-mail.
+    - *@FXML private PasswordField passwordField*: Pole do wprowadzania hasła.
+    - *@FXML private PasswordField repeatPasswordField*: Pole do wprowadzania powtórzonego hasła.
+    - *@FXML private Label errorLabel*: Etykieta do wyświetlania komunikatów błędu.
+- **Metody**:
+    - *public RegisterController(Stage stage, ConfigurableApplicationContext context)*: Konstruktor, inicjalizuje pola.
+    - *@FXML public void handleRegister()*: Obsługuje zdarzenie rejestracji.
+    - *@FXML public void handleLoginRedirect()*: Obsługuje przekierowanie do ekranu logowania.
+    - *private boolean validateInput(String name, String surname, String email, String password, String repeatPassword)*: Sprawdza poprawność wprowadzonych danych.
+    - *private boolean isEmailValid(String email)*: Sprawdza poprawność formatu adresu e-mail.
+    - *private boolean isPasswordValid(String password)*: Sprawdza poprawność długości hasła.
+
+### 6.7 RentBookController
+- **Pola**:
+    - *private final Stage primaryStage*: Przechowuje referencję do głównego okna aplikacji.
+    - *private final Stage stage*: Przechowuje referencję do okna kontrolera.
+    - *private final ConfigurableApplicationContext context*: Przechowuje kontekst aplikacji Spring.
+    - *private final BooksService booksService*: Serwis do obsługi operacji na książkach.
+    - *private final RentalsService rentalsService*: Serwis do obsługi operacji na wypożyczeniach.
+    - *private final PersonService personService*: Serwis do obsługi operacji na osobach.
+    - *private final Book book*: Przechowuje informacje o wypożyczanej książce.
+    - *@FXML private Label titleLabel*: Etykieta do wyświetlania tytułu książki.
+    - *@FXML private Label authorLabel*: Etykieta do wyświetlania autora książki.
+    - *@FXML ImageView coverImage*: Pole do wyświetlania obrazu okładki książki.
+    - *@FXML TextField customerEmail*: Pole do wprowadzania adresu e-mail klienta.
+    - *@FXML DatePicker startDate*: Pole do wybierania daty wypożyczenia.
+    - *@FXML Label errorLabel*: Etykieta do wyświetlania komunikatów błędu.
+    - *@FXML Label availabilityLabel*: Etykieta do wyświetlania dostępności książki.
+- **Metody**:
+    - *@FXML public void handleRentClick()*: Obsługuje zdarzenie wypożyczenia książki.
+    - *private boolean validateHireRequirements(Person person, LocalDate date)*: Sprawdza poprawność wprowadzonych danych do wypożyczenia.
+    - *public void initialize()*: Inicjalizuje kontroler, ustawiając wartości pól na podstawie informacji o książce.
 
 ## 7. Pakiet: *library.proj.gui.events*
+Obie klasy dziedziczą po klasie ApplicationEvent z Springa
+### 7.1 ChangeSceneEvent
+- **Adnotacje**:
+    - *@Getter*: Generuje automatycznie metody dostępu do pól.
+- **Pola**:
+    - *@Getter private final ConfigurableApplicationContext context*: Kontekst aplikacji Spring, przechowuje informacje o kontekście aplikacji.
+    - *@Getter private final SceneCreatorIf sceneCreatorIf*: Interfejs SceneCreatorIf, przechowuje informacje o twórcy sceny.
+- **Metody**:
+    - *public ChangeSceneEvent(Stage stage, ConfigurableApplicationContext context, SceneCreatorIf creator)*: Konstruktor, inicjalizuje pola klasy.
+    - *public Stage getStage()*: Zwraca obiekt Stage zdarzenia.
+
+### 7.2 OpenDialogEvent
+- **Adnotacje**:
+    - *@Getter*: Generuje automatycznie metody dostępu do pól.
+- **Pola**:
+    - *@Getter private final String dialogName*: Nazwa okna dialogowego, przechowuje informacje o nazwie okna.
+    - *@Getter private final int dialogWidth*: Szerokość okna dialogowego, przechowuje informacje o szerokości okna.
+    - *@Getter private final int dialogHeight*: Wysokość okna dialogowego, przechowuje informacje o wysokości okna.
+    - *@Getter private final ConfigurableApplicationContext context*: Kontekst aplikacji Spring, przechowuje informacje o kontekście aplikacji.
+    - *@Getter private final SceneCreatorIf sceneCreatorIf*: Interfejs SceneCreatorIf, przechowuje informacje o twórcy sceny.
+- **Metody**:
+    - *public OpenDialogEvent(String dialogName, int dialogWidth, int dialogHeight, Stage primaryStage, ConfigurableApplicationContext context, SceneCreatorIf creator)*: Konstruktor, inicjalizuje pola klasy.
+    - *public Stage getStage()*: Zwraca obiekt Stage zdarzenia.
 
 ## 8. Pakiet: *library.proj.gui.scenes*
+### 8.1 SceneHandler
+Implementuje interfejs ApplicationListener, który pozwala na obsługę zdarzeń w aplikacji.
+- **Adnotacje**:
+  - *@Component*: Oznacza klasę jako komponent zarządzany przez kontener Spring.
+  - *@Override*: Nadpisuje metodę z klasy bazowej.
+- **Metody**:
+  - *@Override public void onApplicationEvent(ChangeSceneEvent event)*: Implementacja metody interfejsu ApplicationListener, obsługuje zdarzenie zmiany sceny.
+
+### 8.2 DialogHandler
+Implementuje interfejs ApplicationListener, który pozwala na obsługę zdarzeń w aplikacji.
+- **Adnotacje**:
+  - *@Component*: Oznacza klasę jako komponent zarządzany przez kontener Spring.
+  - *@Override*: Nadpisuje metodę z klasy bazowej.
+- **Metody**:
+  - *@Override public void onApplicationEvent(OpenDialogEvent event)*: Implementacja metody interfejsu ApplicationListener, obsługuje zdarzenie otwarcia okna dialogowego.
+
+### 8.3 SceneCreatorIf (interfejs)
+- **Metody**:
+  - *Scene createScene(Stage stage, ConfigurableApplicationContext context)*: Deklaracja metody do tworzenia sceny.
+
+### 8.4 SceneCreator (abstrakcyjna)
+Implementuje interfejs SceneCreatorIf, który pozwala na tworzenie sceny.
+- **Pola**:
+  - private final String sceneName: Przechowuje nazwę sceny.
+  - private final String stylesheetSource: Przechowuje ścieżkę do pliku ze stylami.
+  - protected final FXMLLoader fxmlLoader: Przechowuje obiekt do ładowania plików FXML.
+  - private static final int sceneWidth = 800: Stała przechowująca szerokość sceny.
+  - private static final int sceneHeight = 600: Stała przechowująca wysokość sceny.
+- **Metody**:
+  - *public SceneCreator(String sceneName, String fxmlSource, String stylesheetSource)*: Konstruktor, inicjalizuje pola klasy.
+  - *public Scene createScene(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody interfejsu SceneCreatorIf, tworzy scenę i zwraca ją.
+  - *abstract void setupController(Stage stage, ConfigurableApplicationContext context)*: Metoda abstrakcyjna do ustawiania kontrolera sceny.
+
+>Wszystkie poniższe klasy dziedziczą po klasie SceneCreator.
+
+### 8.5 AddBookCreator
+- **Pola**:
+    - *private final Stage primaryStage*: Przechowuje referencję do głównego okna aplikacji.
+- **Metody**:
+    - *public AddBookCreator(Stage primaryStage)*: Konstruktor, inicjalizuje pola klasy.
+    - *void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
+
+### 8.6 BookDetailsCreator
+- **Adnotacje**:
+    - *@Override*: Nadpisuje metodę z klasy bazowej.
+- **Pola**:
+    - *private Book book*: Przechowuje informacje o książce.
+    - *private SceneCreator previousScene*: Przechowuje informacje o poprzedniej scenie.
+- **Metody**:
+    - *public BookDetailsCreator(Book book, SceneCreator scene)*: Konstruktor, inicjalizuje pola klasy.
+    - *public Scene createScene(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, tworzy scenę i aktualizuje pola kontrolera.
+    - *void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
+
+### 8.7 BookListCreator
+- **Adnotacje**:
+    - *@Override*: Nadpisuje metodę z klasy bazowej.
+- **Metody**:
+    - *public BookListCreator()*: Konstruktor, inicjalizuje pola klasy.
+    - *public Scene createScene(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, tworzy scenę i aktualizuje pola kontrolera.
+    - *void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
+
+### 8.8 LoginCreator
+- **Metody**:
+  - *public LoginCreator()*: Konstruktor, inicjalizuje pola klasy.
+  - *void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
+
+### 8.9 MyRentalsCreator
+- **Adnotacje**:
+  - *@Override*: Nadpisuje metodę z klasy bazowej.
+- **Metody**:
+  - *public MyRentalsCreator()*: Konstruktor, inicjalizuje pola klasy.
+  - *@Override public Scene createScene(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, tworzy scenę i aktualizuje pola kontrolera.
+  - *@Override void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
+
+### 8.10 RegisterCreator
+- **Metody**:
+  - *public RegisterCreator()*: Konstruktor, inicjalizuje pola klasy.
+  - *void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
+
+### 8.11 RentBookCreator
+- **Adnotacje**:
+  - *@Override*: Nadpisuje metodę z klasy bazowej.
+- **Pola**:
+  - *private final Stage primaryStage*: Przechowuje referencję do głównego okna aplikacji.
+  - *private final Book book*: Przechowuje informacje o książce.
+- **Metody**:
+  - *public RentBookCreator(Stage primaryStage, Book book)*: Konstruktor, inicjalizuje pola klasy.
+  - *@Override public Scene createScene(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, tworzy scenę i aktualizuje pola kontrolera.
+  - *void setupController(Stage stage, ConfigurableApplicationContext context)*: Implementacja metody abstrakcyjnej z klasy bazowej, ustawia kontroler sceny.
 
 ## 9. Pakiet: *library.proj.gui.scenes.objects*
+### 9.1 BookEntry
+Klasa BookEntry dziedziczy po klasie VBox z JavaFX
+- **Pola**:
+    - *private final Image image*: Obiekt klasy Image reprezentujący obraz okładki książki.
+    - *private final ImageView imageView*: Obiekt klasy ImageView służący do wyświetlania obrazu książki.
+    - *private final Label title*: Obiekt klasy Label reprezentujący tytuł książki.
+    - *private final Label author*: Obiekt klasy Label reprezentujący autora książki.
+    - *private static final double entrySize = 120.0*: Stała określająca preferowaną szerokość i wysokość wpisu książki.
+    - *private static final double iconSize = 40.0*: Stała określająca preferowany rozmiar ikony okładki książki.
+- **Konstruktor**:
+    - *public BookEntry(Book book)*: Konstruktor, inicjalizuje pola klasy.
