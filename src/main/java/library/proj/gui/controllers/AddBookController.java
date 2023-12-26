@@ -44,7 +44,7 @@ public class AddBookController {
         Status status = clickedButton.getText().equals("Dostępne") ? Status.AVAILABLE : Status.NOT_AVAILABLE;
 
         if (validateInput(title, author)) {
-            Book book = new Book(title, author, cover, description, status.ordinal());
+            Book book = new Book(title, author, cover, description, status,"");
             booksService.createBook(book);
             context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
             stage.close();

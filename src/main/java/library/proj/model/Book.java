@@ -20,30 +20,31 @@ public class Book {
     @Getter
     private String contents;
     @Getter
-    private int status;
+    private Status status;
     @Getter
     private int views;
 //    TODO: przy lazy ładowaniu wywala błędy, na razie dałem eager ale może da się to jakoś mądrzej zrobić
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.ALL)
+    @Getter
+    private String imagePath;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rental> rentals;
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings;
 
-    public Book() {
-    }
+    public Book() {}
 
-    public Book(String title, String author, String cover, String contents, int status) {
+    public Book(String title, String author, String cover, String contents, Status status, String imagePath) {
         this.title = title;
         this.author = author;
         this.cover = cover;
         this.contents = contents;
         this.status = status;
         this.views = 0;
+        this.imagePath=imagePath;
     }
 
-    public void updateViews(int views) {
-        this.views = views;
-    }
+    public void updateViews(int views) {this.views = views;}
 
     public void registerRental(Rental rental) {
         if (rentals == null)
@@ -58,15 +59,15 @@ public class Book {
     }
 
     public boolean isAvailable() {
-        return status == Status.AVAILABLE.ordinal();
+        return status == Status.AVAILABLE;
     }
 
     public void setStatus(Status status) {
-        this.status = status.ordinal();
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return title + " " + author + "   |   " + Status.values()[status];
+        return title + " " + author + "   |   " + Status.values()[status.ordinal()];
     }
 }

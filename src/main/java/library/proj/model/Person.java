@@ -22,10 +22,11 @@ public class Person {
     private String password;
     @Getter
     private int permissions;
+    @Getter
     //    TODO: przy lazy ładowaniu wywala błędy, na razie dałem eager, ale może da się to jakoś mądrzej zrobić
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
     private List<Rental> rentals;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings;
 
     public Person() {}

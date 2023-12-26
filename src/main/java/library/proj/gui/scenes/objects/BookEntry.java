@@ -25,7 +25,7 @@ public class BookEntry extends VBox {
         super.getStyleClass().add("rounded-button");
 
         // Book icon
-        image = new Image(getClass().getResource("/images/bookIcon.png").toExternalForm());
+        image = new Image(getClass().getResource(book.getImagePath()).toExternalForm());
         imageView = new ImageView(image);
         imageView.setFitHeight(iconSize);
         imageView.setFitWidth(iconSize);
