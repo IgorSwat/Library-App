@@ -59,23 +59,19 @@ public class RentBookController {
     public void handleRentClick() {
         String email = customerEmail.getText();
         LocalDate date = startDate.getValue();
-
         Person person = personService.getPerson(email);
         if (!validateHireRequirements(person, date))
             return;
         book.setStatus(Status.NOT_AVAILABLE);
         Rental rental = new Rental(LoginController.loggedAccount, book, date);
         rentalsService.createRental(rental);
-//        TODO jak włączę przełączanie sceny to się dzieją dzikie rzeczy
-//        wygląda jakby nie persystowały zmiany w książce i konsola springa się przewija do góry XD
-        context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
+        booksService.saveBook(book);
         stage.close();
-//        primaryStage.show();
-
+        primaryStage.show();
     }
 
     private boolean validateHireRequirements(Person person, LocalDate date) {
-        if(date == null){
+        if (date == null) {
             errorLabel.setText("Podaj datę wypożyczenia");
             return false;
         }
