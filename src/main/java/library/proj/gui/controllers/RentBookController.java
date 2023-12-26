@@ -94,7 +94,7 @@ public class RentBookController {
         titleLabel.setText(book.getTitle());
         authorLabel.setText(book.getAuthor());
         availabilityLabel.setText(book.isAvailable() ? "Tak" : "Nie");
-        Image cover = new Image(book.getCover(), true);
+        Image cover = new Image(book.getImagePath(), true);
         coverImage.setImage(cover);
     }
 }

@@ -23,8 +23,6 @@ public class Book {
     private Status status;
     @Getter
     private int views;
-//    TODO: przy lazy ładowaniu wywala błędy, na razie dałem eager ale może da się to jakoś mądrzej zrobić
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.ALL)
     @Getter
     private String imagePath;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

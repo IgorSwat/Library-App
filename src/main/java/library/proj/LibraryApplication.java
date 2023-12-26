@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @SpringBootApplication
@@ -40,12 +41,6 @@ public class LibraryApplication {
         booksService.createBook(new Book("Harry Potter i Książę Półkrwi", "J.K. Rowling", "Miękka", "Szósta część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/ksiaze_polkrwi.jpg"));
         Book insygnia=new Book("Harry Potter i Insygnia Śmierci", "J.K. Rowling", "Miękka", "Siódma część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/insygnia_smierci.jpg");
         booksService.createBook(insygnia);
-//        for (int i = 0; i < noExamples; i++) {
-//            booksService.createBook(new Book("Example " + Integer.toString(i + 1), "Anonymous", "-",
-//                    "Some description", Status.AVAILABLE,"/binaries/w_pustyni_i_w_puszczy.jpg"));
-//        }
-        rentalsService.createRental(new Rental(personService.getPerson("Adamski"),booksService.getBook("Henryk Sienkiewicz","W pustyni i w puszczy"), new Date()));
-        rentalsService.createRental(new Rental(personService.getPerson("Adamski"),booksService.getBook("J.K. Rowling","Harry Potter i Książę Półkrwi"), new Date()));
     }
 
 }

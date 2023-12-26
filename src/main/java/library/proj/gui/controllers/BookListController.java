@@ -1,10 +1,7 @@
 package library.proj.gui.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,10 +17,7 @@ import library.proj.gui.scenes.objects.BookEntry;
 import library.proj.model.Book;
 import library.proj.model.Permissions;
 import library.proj.service.BooksService;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class BookListController {
