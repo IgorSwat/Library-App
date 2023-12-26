@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.events.OpenDialogEvent;
 import library.proj.gui.scenes.AddBookCreator;
-import library.proj.gui.scenes.RentBookCreator;
 import library.proj.gui.scenes.BookDetailsCreator;
 import library.proj.gui.scenes.BookListCreator;
 import library.proj.gui.scenes.MyRentalsCreator;
@@ -18,6 +17,7 @@ import library.proj.model.Book;
 import library.proj.model.Permissions;
 import library.proj.service.BooksService;
 import org.springframework.context.ConfigurableApplicationContext;
+
 import java.util.List;
 
 public class BookListController {
@@ -42,7 +42,7 @@ public class BookListController {
     public void updateBookList() {
         bookList.getChildren().clear();
 
-        List<Book> books = booksService.getAvailableBooks();
+        List<Book> books = booksService.getAllBooks();
         HBox row = new HBox();
         row.getStyleClass().add("book-list-row");
         int rowCounter = 0;
@@ -55,8 +55,7 @@ public class BookListController {
                 rowCounter++;
             }
             BookEntry entry = new BookEntry(book);
-            entry.setOnDragDetected(event -> handleBookEntryDrag(book));
-            entry.setOnMouseClicked(mouseEvent -> handleBookDetailsClicked(mouseEvent,book));
+            entry.setOnMouseClicked(mouseEvent -> handleBookDetailsClicked(mouseEvent, book));
             row.getChildren().add(entry);
         }
         bookList.getChildren().add(row);
@@ -73,19 +72,11 @@ public class BookListController {
                 stage, context, new AddBookCreator(stage)));
     }
 
-    public void handleBookDetailsClicked(MouseEvent event, Book book){
-        context.publishEvent(new ChangeSceneEvent(stage,context, new BookDetailsCreator(book,new BookListCreator())));
+    public void handleBookDetailsClicked(MouseEvent event, Book book) {
+        context.publishEvent(new ChangeSceneEvent(stage, context, new BookDetailsCreator(book, new BookListCreator())));
     }
 
-    public void handleUserClicked(){
+    public void handleUserClicked() {
         context.publishEvent(new ChangeSceneEvent(stage, context, new MyRentalsCreator()));
-    }
-
-    private void handleBookEntryDrag(Book book) {
-        if (Permissions.values()[LoginController.loggedAccount.getPermissions()] == Permissions.USER) {
-            return;
-        }
-        context.publishEvent(new OpenDialogEvent("Wypożyczanie książki", 360, 500,
-                stage, context, new RentBookCreator(stage, book)));
     }
 }

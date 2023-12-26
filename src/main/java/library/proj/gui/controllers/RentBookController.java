@@ -19,8 +19,6 @@ import library.proj.service.RentalsService;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 
 public class RentBookController {
     private final Stage primaryStage;
@@ -66,8 +64,8 @@ public class RentBookController {
         Rental rental = new Rental(LoginController.loggedAccount, book, date);
         rentalsService.createRental(rental);
         booksService.saveBook(book);
+        context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
         stage.close();
-        primaryStage.show();
     }
 
     private boolean validateHireRequirements(Person person, LocalDate date) {
