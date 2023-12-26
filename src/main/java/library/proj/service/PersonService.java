@@ -23,12 +23,11 @@ public class PersonService {
         return personsRepository.findById(id);
     }
 
-    public Person getPerson(String surname) {
-        return personsRepository.findByLastName(surname);
-    }
-
     public Person getPerson(String email, String password) {
         return personsRepository.findByEmailAndPassword(email, password);
+    }
+    public Person getPerson(String email){
+        return personsRepository.findByEmail(email);
     }
 
     public Person savePerson(Person person) {

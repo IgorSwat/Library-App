@@ -22,7 +22,8 @@ public class Person {
     private String password;
     @Getter
     private int permissions;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    //    TODO: przy lazy ładowaniu wywala błędy, na razie dałem eager, ale może da się to jakoś mądrzej zrobić
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
     private List<Rental> rentals;
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Rating> ratings;

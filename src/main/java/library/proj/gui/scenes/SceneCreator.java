@@ -33,7 +33,7 @@ public abstract class SceneCreator implements SceneCreatorIf {
             return scene;
         }
         catch (IOException exc) {
-            throw new RuntimeException("Unable to load " + sceneName + " cause: " + exc.getCause());
+            throw new RuntimeException("Unable to load " + sceneName + " cause: " + exc.getCause().getCause());
         }
     }
 

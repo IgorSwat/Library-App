@@ -25,4 +25,7 @@ public class BooksService {
     public Book getBook(String author, String title) {return booksRepository.findByTitleAndAuthor(title, author);}
 
     public Book createBook(Book book) {return booksRepository.save(book);}
+    public Book saveBook(Book book){
+        return booksRepository.save(book);
+    }
 }

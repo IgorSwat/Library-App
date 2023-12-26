@@ -38,7 +38,7 @@ public class AddBookController {
     public void handleAddClick() {
         String title = titleField.getText();
         String author = authorField.getText();
-        String cover = "-";
+        String cover = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/640px-No-Image-Placeholder.svg.png";
         String description = descriptionField.getText();
         RadioButton clickedButton = (RadioButton)toggleGroup.getSelectedToggle();
         Status status = clickedButton.getText().equals("Dostępne") ? Status.AVAILABLE : Status.NOT_AVAILABLE;

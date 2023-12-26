@@ -7,12 +7,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import library.proj.gui.events.ChangeSceneEvent;
+import library.proj.gui.scenes.BookListCreator;
 import library.proj.model.Book;
+import library.proj.model.Person;
+import library.proj.model.Rental;
+import library.proj.model.Status;
 import library.proj.service.BooksService;
+import library.proj.service.PersonService;
 import library.proj.service.RentalsService;
 import org.springframework.context.ConfigurableApplicationContext;
-import java.util.Date;
 
+import java.time.LocalDate;
+import java.util.Date;
 
 
 public class RentBookController {
@@ -21,6 +28,7 @@ public class RentBookController {
     private final ConfigurableApplicationContext context;
     private final BooksService booksService;
     private final RentalsService rentalsService;
+    private final PersonService personService;
     private final Book book;
     @FXML
     private Label titleLabel;
@@ -29,11 +37,13 @@ public class RentBookController {
     @FXML
     ImageView coverImage;
     @FXML
-    TextField customerFirstName;
-    @FXML
-    TextField customerLastName;
+    TextField customerEmail;
     @FXML
     DatePicker startDate;
+    @FXML
+    Label errorLabel;
+    @FXML
+    Label availabilityLabel;
 
     public RentBookController(Stage primaryStage, Stage stage, ConfigurableApplicationContext context, Book book) {
         this.primaryStage = primaryStage;
@@ -42,18 +52,52 @@ public class RentBookController {
         this.book = book;
         this.booksService = context.getBean(BooksService.class);
         this.rentalsService = context.getBean(RentalsService.class);
+        this.personService = context.getBean(PersonService.class);
     }
 
     @FXML
     public void handleRentClick() {
-        var firstName = customerFirstName.getText();
-        var lastName = customerLastName.getText();
-//        Date date = startDate.getValue();
+        String email = customerEmail.getText();
+        LocalDate date = startDate.getValue();
+
+        Person person = personService.getPerson(email);
+        if (!validateHireRequirements(person, date))
+            return;
+        book.setStatus(Status.NOT_AVAILABLE);
+        Rental rental = new Rental(LoginController.loggedAccount, book, date);
+        rentalsService.createRental(rental);
+//        TODO jak włączę przełączanie sceny to się dzieją dzikie rzeczy
+//        wygląda jakby nie persystowały zmiany w książce i konsola springa się przewija do góry XD
+        context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
+        stage.close();
+//        primaryStage.show();
+
+    }
+
+    private boolean validateHireRequirements(Person person, LocalDate date) {
+        if(date == null){
+            errorLabel.setText("Podaj datę wypożyczenia");
+            return false;
+        }
+        if (date.isBefore(LocalDate.now())) {
+            errorLabel.setText("Nie można podać daty z przeszłości");
+            return false;
+        }
+        if (!book.isAvailable()) {
+            errorLabel.setText("Wybrana książka jest niedostępna");
+            return false;
+        }
+        if (person == null) {
+            errorLabel.setText("Osoba o podanym e-mailu nie istnieje");
+            return false;
+        }
+        return true;
     }
 
     public void initialize() {
         titleLabel.setText(book.getTitle());
         authorLabel.setText(book.getAuthor());
+        availabilityLabel.setText(book.isAvailable() ? "Tak" : "Nie");
         Image cover = new Image(book.getCover(), true);
         coverImage.setImage(cover);
     }

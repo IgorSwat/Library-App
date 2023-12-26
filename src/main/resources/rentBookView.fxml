@@ -16,10 +16,11 @@
         <Label fx:id="authorLabel" styleClass="book-property-label" />
     </HBox>
     <HBox styleClass="book-property-entry">
-        <TextField fx:id="customerFirstName" promptText="Imię" styleClass="book-property-label" />
+        <Label styleClass="book-property-label" text="Dostępność:" />
+        <Label fx:id="availabilityLabel" styleClass="book-property-label" />
     </HBox>
     <HBox styleClass="book-property-entry">
-        <TextField fx:id="customerLastName" promptText="Nazwisko" styleClass="book-property-label" />
+        <TextField fx:id="customerEmail" promptText="Email" styleClass="book-property-label" />
     </HBox>
     <HBox styleClass="book-property-entry">
       <children>

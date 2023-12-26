@@ -11,7 +11,7 @@ public class RentBookCreator extends SceneCreator {
     private final Book book;
 
     public RentBookCreator(Stage primaryStage, Book book) {
-        super("Rent book dialog", "/rentBookView.fxml", "/addBookStyles.css");
+        super("Rent book dialog", "/rentBookView.fxml", "/rentBookStyles.css");
         this.primaryStage = primaryStage;
         this.book = book;
     }

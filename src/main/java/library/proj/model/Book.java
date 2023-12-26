@@ -23,12 +23,14 @@ public class Book {
     private int status;
     @Getter
     private int views;
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+//    TODO: przy lazy ładowaniu wywala błędy, na razie dałem eager ale może da się to jakoś mądrzej zrobić
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.ALL)
     private List<Rental> rentals;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Rating> ratings;
 
-    public Book() {}
+    public Book() {
+    }
 
     public Book(String title, String author, String cover, String contents, int status) {
         this.title = title;
@@ -39,7 +41,9 @@ public class Book {
         this.views = 0;
     }
 
-    public void updateViews(int views) {this.views = views;}
+    public void updateViews(int views) {
+        this.views = views;
+    }
 
     public void registerRental(Rental rental) {
         if (rentals == null)
@@ -55,6 +59,10 @@ public class Book {
 
     public boolean isAvailable() {
         return status == Status.AVAILABLE.ordinal();
+    }
+
+    public void setStatus(Status status) {
+        this.status = status.ordinal();
     }
 
     @Override
