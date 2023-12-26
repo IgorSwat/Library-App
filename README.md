@@ -12,6 +12,19 @@ Projekt polega na stworzeniu aplikacji wolnostojącej, która będzie symulować
 - System wysyłania maili z powiadomieniami
 - Statystyki - graficzne
 
+## M1 - TODO
+- [x] Wprowadzanie nowego użytkownika (imię, nazwisko, email) oraz sprawdzenie poprawności danych
+- [x] Model bazodanowy
+- [x] Model obiektowy
+
+## M2 - TODO
+- [x] Lista książek
+- [x] Widok osobnej książki(klikamy w książkę i wyświetlają się szczegóły)
+- [x] Wypożyczanie książki
+- [x] Widok naszych wypożyczeń(aktualne wypożyczenia)
+- [x] Panel bibliotekarza(kto jakie ma wypożyczenia, muszą być wszystkie uprawnienia zaimplementowane)
+- [x] Formularz dodawania nowej książki(przez bibliotekarza)
+
 ## Technologie
 Język programowania: Java\
 Framework: Spring\
