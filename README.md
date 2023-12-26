@@ -504,3 +504,7 @@ Klasa BookEntry dziedziczy po klasie VBox z JavaFX
     - *private static final double iconSize = 40.0*: Stała określająca preferowany rozmiar ikony okładki książki.
 - **Konstruktor**:
     - *public BookEntry(Book book)*: Konstruktor, inicjalizuje pola klasy.
+
+## 10. Graf
+>Poniżej przedstawiono graf zależności między klasami w projekcie wygenerowany przez IntelliJ IDEA.
+![Graf zależności między klasami](Model%20obiektowy%20graf%20-%20jasny.png)
