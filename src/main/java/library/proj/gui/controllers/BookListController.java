@@ -5,11 +5,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.events.OpenDialogEvent;
 import library.proj.gui.scenes.AddBookCreator;
+import library.proj.gui.scenes.BookDetailsCreator;
+import library.proj.gui.scenes.BookListCreator;
+import library.proj.gui.scenes.MyRentalsCreator;
 import library.proj.gui.scenes.objects.BookEntry;
 import library.proj.model.Book;
 import library.proj.model.Permissions;
@@ -54,6 +59,7 @@ public class BookListController {
                 rowCounter++;
             }
             BookEntry entry = new BookEntry(book);
+            entry.setOnMouseClicked(mouseEvent -> handleBookDetailsClicked(mouseEvent,book));
             row.getChildren().add(entry);
         }
         bookList.getChildren().add(row);
@@ -68,5 +74,13 @@ public class BookListController {
     public void handleAddBookClick() {
         context.publishEvent(new OpenDialogEvent("Dodawanie książki", 360, 500,
                                                  stage, context, new AddBookCreator(stage)));
+    }
+
+    public void handleBookDetailsClicked(MouseEvent event, Book book){
+        context.publishEvent(new ChangeSceneEvent(stage,context, new BookDetailsCreator(book,new BookListCreator())));
+    }
+
+    public void handleUserClicked(){
+        context.publishEvent(new ChangeSceneEvent(stage, context, new MyRentalsCreator()));
     }
 }

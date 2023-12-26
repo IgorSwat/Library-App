@@ -31,6 +31,13 @@
                     </ImageView>
                 </graphic>
             </Button>
+            <Button styleClass="nav-button" onAction="#handleUserClicked">
+                <graphic>
+                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                        <Image url="/images/userIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
         </HBox>
     </HBox>
 

@@ -22,9 +22,10 @@ public class Person {
     private String password;
     @Getter
     private int permissions;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @Getter
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rental> rentals;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings;
 
     public Person() {}
