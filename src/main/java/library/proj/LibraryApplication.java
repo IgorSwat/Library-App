@@ -26,11 +26,11 @@ public class LibraryApplication {
             personService.savePerson(new Person("Rzegorz", "Gogus", "abc@asd.pl", "password", Permissions.ADMIN));
             personService.savePerson(new Person("Baran", "Adamski", "baran@gmail.com", "password", Permissions.USER));
 
-            addBookExamples(booksService, 18, rentalsService, personService);
+            addBookExamples(booksService, rentalsService, personService);
         });
     }
 
-    private void addBookExamples(BooksService booksService, int noExamples, RentalsService rentalsService, PersonService personService) {
+    private void addBookExamples(BooksService booksService, RentalsService rentalsService, PersonService personService) {
 
         booksService.createBook(new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "Twarda", "przygody Stasia i Nel", Status.AVAILABLE,"/binaries/w_pustyni_i_w_puszczy.jpg"));
         booksService.createBook(new Book("Harry Potter i Kamień Filozoficzny", "J.K. Rowling", "Miękka", "Pierwsza część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/kamien_filozoficzny.jpg"));

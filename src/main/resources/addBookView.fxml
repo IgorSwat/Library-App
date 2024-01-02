@@ -17,6 +17,7 @@
         <Label text="Opis:" styleClass="book-property-label"/>
         <TextArea prefRowCount="8" prefColumnCount="15" wrapText="true" fx:id="descriptionField"/>
     </HBox>
+    <Button text="Okładka" styleClass="book-property-entry" onAction="#handleOpenFile" />
     <HBox styleClass="book-property-entry" style="-fx-padding: 0 0 20 0">
         <Label text="Dostępność:" styleClass="book-property-label"/>
 

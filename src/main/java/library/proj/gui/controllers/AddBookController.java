@@ -2,6 +2,7 @@ package library.proj.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.scenes.BookListCreator;
@@ -10,11 +11,16 @@ import library.proj.model.Status;
 import library.proj.service.BooksService;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.io.File;
+
 public class AddBookController {
     private final Stage primaryStage;
     private final Stage stage;
     private final ConfigurableApplicationContext context;
     private final BooksService booksService;
+
+    private static final String noImage = "/images/no_image.jpg";
+    private String coverImagePath = noImage;
 
     @FXML
     private TextField titleField;
@@ -34,6 +40,21 @@ public class AddBookController {
         this.booksService = context.getBean(BooksService.class);
     }
 
+    private String prepareImagePath(String path) {
+        int index = path.indexOf("resources");
+        String cutPath = path.substring(index + 9);
+        return cutPath.replace('\\', '/');
+    }
+
+    @FXML
+    public void handleOpenFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Wybierz okładkę");
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        coverImagePath = selectedFile != null ? prepareImagePath(selectedFile.getPath()) : noImage;
+    }
+
     @FXML
     public void handleAddClick() {
         String title = titleField.getText();
@@ -44,7 +65,8 @@ public class AddBookController {
         Status status = clickedButton.getText().equals("Dostępne") ? Status.AVAILABLE : Status.NOT_AVAILABLE;
 
         if (validateInput(title, author)) {
-            Book book = new Book(title, author, cover, description, status,"");
+            System.out.println(coverImagePath);
+            Book book = new Book(title, author, cover, description, status, coverImagePath);
             booksService.createBook(book);
             context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
             stage.close();
