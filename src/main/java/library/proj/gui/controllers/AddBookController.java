@@ -12,6 +12,7 @@ import library.proj.service.BooksService;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.File;
+import java.util.Random;
 
 public class AddBookController {
     private final Stage primaryStage;
@@ -59,7 +60,7 @@ public class AddBookController {
     public void handleAddClick() {
         String title = titleField.getText();
         String author = authorField.getText();
-        String cover = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/640px-No-Image-Placeholder.svg.png";
+        String cover = generateCover();
         String description = descriptionField.getText();
         RadioButton clickedButton = (RadioButton)toggleGroup.getSelectedToggle();
         Status status = clickedButton.getText().equals("Dostępne") ? Status.AVAILABLE : Status.NOT_AVAILABLE;
@@ -83,5 +84,17 @@ public class AddBookController {
             return false;
         }
         return true;
+    }
+
+
+
+
+
+
+    // :)
+    private String generateCover() {
+        Random random = new Random();
+        int choice = random.nextInt(2);
+        return choice == 1 ? "Twarda" : "Miękka";
     }
 }
