@@ -8,10 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.events.OpenDialogEvent;
-import library.proj.gui.scenes.AddBookCreator;
-import library.proj.gui.scenes.BookDetailsCreator;
-import library.proj.gui.scenes.BookListCreator;
-import library.proj.gui.scenes.MyRentalsCreator;
+import library.proj.gui.scenes.*;
 import library.proj.gui.scenes.objects.BookEntry;
 import library.proj.model.Book;
 import library.proj.model.Permissions;
@@ -20,7 +17,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.List;
 
-public class BookListController {
+public class BookListController implements NavbarControllerIf {
     private final Stage stage;
     private final ConfigurableApplicationContext context;
     private final BooksService booksService;
@@ -72,11 +69,24 @@ public class BookListController {
                 stage, context, new AddBookCreator(stage)));
     }
 
+    @FXML
     public void handleBookDetailsClicked(MouseEvent event, Book book) {
         context.publishEvent(new ChangeSceneEvent(stage, context, new BookDetailsCreator(book, new BookListCreator())));
     }
 
+    @FXML
+    public void handleBookListRedirect() {
+        context.publishEvent(new ChangeSceneEvent(stage, context, new BookListCreator()));
+    }
+
+    @FXML
     public void handleUserClicked() {
         context.publishEvent(new ChangeSceneEvent(stage, context, new MyRentalsCreator()));
+    }
+
+    @FXML
+    public void handleLogout() {
+        context.publishEvent(new ChangeSceneEvent(stage, context, new LoginCreator()));
+        LoginController.loggedAccount = null;
     }
 }

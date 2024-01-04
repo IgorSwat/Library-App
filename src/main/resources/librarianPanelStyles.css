@@ -40,6 +40,50 @@
     -fx-border-insets: 0;
 }
 
+.filter-bar {
+    -fx-pref-height: 40;
+    -fx-pref-width: 800;
+    -fx-padding: 10;
+    -fx-alignment: center;
+    -fx-background-color: #b09368;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: #3b2506;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 2, 5);
+}
+
+.filter-label {
+    -fx-font-size: 14;
+    -fx-padding: 0 8 0 40;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3b2506;
+}
+
+.first-label {
+    -fx-padding: 0 8 0 10;
+}
+
+.filter-input {
+    -fx-font-size: 14;
+    -fx-pref-height: 30;
+    -fx-padding: 0 4 0 4;
+    -fx-border-width: 2;
+    -fx-border-color: #3b2506;
+    -fx-background-color: #fcdca4;
+}
+
+.filter-checkbox {
+    -fx-font-size: 14;
+    -fx-padding: 0 30 0 40;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3b2506;
+}
+
+.filter-button {
+    -fx-padding: 6;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}
+
 .scrollable-panel-container {
 }
 
@@ -57,38 +101,30 @@
     -fx-background-color: transparent;
 }
 
-.book-list {
+.rental-list {
+    -fx-min-width: 720;
+    -fx-padding: 20 40 0 40;
+    -fx-spacing: 10;
     -fx-alignment: top-center;
-    -fx-padding: 30;
-    -fx-spacing: 20;
     -fx-background-color: transparent;
 }
 
-.book-list-row {
-    -fx-spacing: 30;
-    -fx-alignment: center;
-}
-
-.rounded-button {
-    -fx-background-color: #ccb491;
+.rental-entry {
+    -fx-pref-height: 40;
+    -fx-pref-width: 720;
+    -fx-background-radius: 10;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 5, 5);
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-background-radius: 15;
-    -fx-border-color: transparent;
-    -fx-padding: 10px;
-    -fx-alignment: center;
+    -fx-background-color: #ccb491
 }
 
-.rounded-button:hover {
-    -fx-background-color: #edc993;
-    -fx-cursor: hand;
-}
-
-.book-title {
-    -fx-font-size: 14px;
+.rental-info-label {
+    -fx-font-size: 14;
     -fx-font-weight: bold;
+    -fx-text-fill: #3b2506;
 }
 
-.book-author {
+.rental-accept-button {
+    -fx-padding: 4;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
 }

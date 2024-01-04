@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import java.lang.String?>
+<?import library.proj.gui.scenes.objects.RentalEntry?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox styleClass="books-navbar">
+        <Label text="Wypożyczenia" styleClass="view-title"/>
+
+        <HBox HBox.hgrow="ALWAYS" styleClass="buttons-panel">
+            <Button styleClass="nav-button" onAction="#handleBookListRedirect">
+                <graphic>
+                    <ImageView fitHeight="30" fitWidth="26">
+                        <Image url="/images/bookIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button styleClass="nav-button" onAction="#handleUserClicked">
+                <graphic>
+                    <ImageView fitHeight="30" fitWidth="26">
+                        <Image url="/images/userIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button styleClass="nav-button" onAction="#handleLogout">
+                <graphic>
+                    <ImageView fitHeight="30" fitWidth="26">
+                        <Image url="/images/logoutIcon.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </HBox>
+
+    <HBox styleClass="filter-bar">
+        <Label text="Imię i nazwisko:">
+            <styleClass>
+                <String fx:value="filter-label"/>
+                <String fx:value="first-label"/>
+            </styleClass>
+        </Label>
+        <TextField styleClass="filter-input" fx:id="userNameField" />
+        <Label styleClass="filter-label" text="Tytuł:" />
+        <TextField styleClass="filter-input" fx:id="bookTitleField" />
+        <CheckBox styleClass="filter-checkbox" text="Po terminie" fx:id="expiredRentalsCheck" />
+        <Button onAction="#handleFilterRentals">
+            <styleClass>
+                <String fx:value="nav-button"/>
+                <String fx:value="filter-button"/>
+            </styleClass>
+            <graphic>
+                <ImageView fitHeight="22" fitWidth="22">
+                    <Image url="/images/glass.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <StackPane styleClass="scrollable-panel-container">
+        <ImageView styleClass="scrollable-panel-background" fitHeight="500" fitWidth="800">
+            <Image url="/images/library-background.jpg" />
+        </ImageView>
+        <ScrollPane styleClass="scroll-pane">
+            <VBox fx:id="rentalList" styleClass="rental-list" >
+            </VBox>
+        </ScrollPane>
+    </StackPane>
+</VBox>

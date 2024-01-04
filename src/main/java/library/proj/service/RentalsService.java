@@ -5,7 +5,9 @@ import library.proj.model.Rental;
 import library.proj.repository.RentalsRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RentalsService {
@@ -15,6 +17,11 @@ public class RentalsService {
     public RentalsService(RentalsRepository rentalsRepository) {this.rentalsRepository = rentalsRepository;}
 
     public List<Rental> getAllRentals() {return rentalsRepository.findAll();}
+
+    public List<Rental> getCurrentRentals() {
+        List<Rental> rentals = getAllRentals();
+        return rentals.stream().filter(Rental::isActiveNow).toList();
+    }
 
     public List<Rental> getRentalsByUser(Person person) {
         List<Rental> rentals = getAllRentals();
@@ -27,5 +34,14 @@ public class RentalsService {
     }
 
     public Rental createRental(Rental rental) {return rentalsRepository.save(rental);}
+
+    public Rental updateRentalStatus(int rentalId, boolean status) {
+        Rental rentalEntity = rentalsRepository.findById(rentalId);
+        if (rentalEntity != null) {
+            rentalEntity.setReturned(status);
+            return rentalsRepository.save(rentalEntity);
+        }
+        return null;
+    }
 
 }

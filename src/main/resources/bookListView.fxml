@@ -12,28 +12,28 @@
         <HBox HBox.hgrow="ALWAYS" styleClass="buttons-panel">
             <Button fx:id="addBookButton" styleClass="nav-button" onAction="#handleAddBookClick">
                 <graphic>
-                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                    <ImageView fitHeight="30" fitWidth="26">
                         <Image url="/images/plusIcon.png" />
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="nav-button">
                 <graphic>
-                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                    <ImageView fitHeight="30" fitWidth="26">
                         <Image url="/images/homeIcon.png" />
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="nav-button">
                 <graphic>
-                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                    <ImageView fitHeight="30" fitWidth="26">
                         <Image url="/images/settingsIcon.png" />
                     </ImageView>
                 </graphic>
             </Button>
             <Button styleClass="nav-button" onAction="#handleUserClicked">
                 <graphic>
-                    <ImageView styleClass="nav-button-image" fitHeight="30" fitWidth="26">
+                    <ImageView fitHeight="30" fitWidth="26">
                         <Image url="/images/userIcon.png" />
                     </ImageView>
                 </graphic>
