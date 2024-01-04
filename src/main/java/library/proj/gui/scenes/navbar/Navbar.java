@@ -17,6 +17,7 @@ import library.proj.gui.controllers.NavbarController;
  3. Run setupNavbar() method inside createScene() from your scene creator class (see example in LibrarianPanelCreator)
  4. *** If you want to manipulate with single button of Navbar, you can always use getButton() method with
     the correct button type you are interested in.
+ Remember to derive after SceneWithNavbarCreator when you create scene creator for new scene with navbar!!!
 
 If you want to add new button with completely new functionality, you should follow these steps:
 1. Add another value to NavButtonType enum
