@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 import library.proj.gui.controllers.BookListController;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class BookListCreator extends SceneCreator {
+public class BookListCreator extends SceneWithNavbarCreator {
 
     public BookListCreator() { super("Book list scene", "/bookListView.fxml", "/bookListStyles.css"); }
 
@@ -13,8 +13,8 @@ public class BookListCreator extends SceneCreator {
     public Scene createScene(Stage stage, ConfigurableApplicationContext context) {
         Scene scene = super.createScene(stage, context);
         BookListController controller = (BookListController)fxmlLoader.getController();
+        controller.setupNavbar();
         controller.updateBookList();
-        controller.updateNavbar();
         return scene;
     }
 

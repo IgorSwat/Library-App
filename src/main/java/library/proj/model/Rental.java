@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
     private int id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
@@ -28,14 +29,35 @@ public class Rental {
     @Getter
     @Setter
     private LocalDate returnDate;
+    @Getter
+    @Setter
+    private boolean returned; // true = returned, false = not returned
 
     public Rental() {}
 
-    public Rental(Person person, Book book, LocalDate rentalDate) {
+    public Rental(Person person, Book book, LocalDate returnDate) {
         this.person = person;
         this.book = book;
-        this.rentalDate = rentalDate;
+        this.rentalDate = LocalDate.now();
+        this.returnDate = returnDate;
+        this.returned = false;
         person.registerRental(this);
         book.registerRental(this);
     }
+
+    public Rental(Person person, Book book, LocalDate rentalDate, LocalDate returnDate) {
+        this.person = person;
+        this.book = book;
+        this.rentalDate = rentalDate;
+        this.returnDate = returnDate;
+        this.returned = false;
+        person.registerRental(this);
+        book.registerRental(this);
+    }
+
+    public boolean isActiveNow() {
+        return !returned && !LocalDate.now().isBefore(rentalDate);
+    }
+
+    public boolean isExpired() {return !returned && LocalDate.now().isAfter(returnDate);}
 }

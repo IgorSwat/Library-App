@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox fx:id="navbarField" style="-fx-pref-width: 800">
+    </HBox>
+
+    <HBox styleClass="filter-bar">
+        <Label text="Imię i nazwisko:">
+            <styleClass>
+                <String fx:value="filter-label"/>
+                <String fx:value="first-label"/>
+            </styleClass>
+        </Label>
+        <TextField styleClass="filter-input" fx:id="userNameField" />
+        <Label styleClass="filter-label" text="Tytuł:" />
+        <TextField styleClass="filter-input" fx:id="bookTitleField" />
+        <CheckBox styleClass="filter-checkbox" text="Po terminie" fx:id="expiredRentalsCheck" />
+        <Button styleClass="filter-button" onAction="#handleFilterRentals">
+            <graphic>
+                <ImageView fitHeight="22" fitWidth="22">
+                    <Image url="/images/glass.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <StackPane styleClass="scrollable-panel-container">
+        <ImageView styleClass="scrollable-panel-background" fitHeight="500" fitWidth="800">
+            <Image url="/images/library-background.jpg" />
+        </ImageView>
+        <ScrollPane styleClass="scroll-pane">
+            <VBox fx:id="rentalList" styleClass="rental-list" >
+            </VBox>
+        </ScrollPane>
+    </StackPane>
+</VBox>

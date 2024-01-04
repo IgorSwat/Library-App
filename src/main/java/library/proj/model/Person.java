@@ -39,8 +39,10 @@ public class Person {
         this.permissions = permissions.ordinal();
     }
 
+    public String getFullName() { return firstName + " " + lastName; }
+
     public String toString() {
-        return firstName + " " + lastName + "   |   " + Permissions.values()[permissions];
+        return getFullName() + "   |   " + Permissions.values()[permissions];
     }
 
     public void registerRental(Rental rental) {

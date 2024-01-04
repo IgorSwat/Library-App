@@ -10,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -32,7 +34,8 @@ public class LibraryApplication {
 
     private void addBookExamples(BooksService booksService, RentalsService rentalsService, PersonService personService) {
 
-        booksService.createBook(new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "Twarda", "przygody Stasia i Nel", Status.AVAILABLE,"/binaries/w_pustyni_i_w_puszczy.jpg"));
+        Book puszcza = new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "Twarda", "przygody Stasia i Nel", Status.AVAILABLE,"/binaries/w_pustyni_i_w_puszczy.jpg");
+        booksService.createBook(puszcza);
         booksService.createBook(new Book("Harry Potter i Kamień Filozoficzny", "J.K. Rowling", "Miękka", "Pierwsza część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/kamien_filozoficzny.jpg"));
         booksService.createBook(new Book("Harry Potter i Komnata Tajemnic", "J.K. Rowling", "Miękka", "Druga część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/komnata_tajemnic.jpg"));
         booksService.createBook(new Book("Harry Potter i Więzień Azkabanu", "J.K. Rowling", "Miękka", "Trzecia część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/wiezien_azkabanu.jpg"));
@@ -41,6 +44,19 @@ public class LibraryApplication {
         booksService.createBook(new Book("Harry Potter i Książę Półkrwi", "J.K. Rowling", "Miękka", "Szósta część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/ksiaze_polkrwi.jpg"));
         Book insygnia=new Book("Harry Potter i Insygnia Śmierci", "J.K. Rowling", "Miękka", "Siódma część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/insygnia_smierci.jpg");
         booksService.createBook(insygnia);
+
+
+        String dateString = "2024-01-09";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dateString, formatter);
+        Person baran = personService.getPerson("baran@gmail.com");
+        Rental rental = new Rental(baran, insygnia, localDate);
+        rentalsService.createRental(rental);
+        Rental rental2 = new Rental(baran, puszcza, localDate);
+        rentalsService.createRental(rental2);
+        LocalDate oldDate1 = LocalDate.parse("2023-12-27", formatter);
+        LocalDate oldDate2 = LocalDate.parse("2023-12-31", formatter);
+        rentalsService.createRental(new Rental(baran, insygnia, oldDate1, oldDate2));
     }
 
 }
