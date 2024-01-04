@@ -7,8 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
-import library.proj.gui.events.OpenDialogEvent;
 import library.proj.gui.scenes.*;
+import library.proj.gui.scenes.navbar.NavButtonType;
+import library.proj.gui.scenes.navbar.Navbar;
 import library.proj.gui.scenes.objects.BookEntry;
 import library.proj.model.Book;
 import library.proj.model.Permissions;
@@ -17,23 +18,35 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.List;
 
-public class BookListController implements NavbarControllerIf {
-    private final Stage stage;
-    private final ConfigurableApplicationContext context;
+public class BookListController extends NavbarController {
     private final BooksService booksService;
 
     @FXML
-    private VBox bookList;
+    private HBox navbarField;
+    private Navbar navbar = null;
+
     @FXML
-    private Button addBookButton;
+    private VBox bookList;
 
     private static final int maxEntriesInRow = 5;
     private static final double entriesSpacing = 50.0;
 
     public BookListController(Stage stage, ConfigurableApplicationContext context) {
-        this.stage = stage;
-        this.context = context;
+        super(stage, context);
         this.booksService = context.getBean(BooksService.class);
+    }
+
+    public void setupNavbar() {
+        navbar = new Navbar("Lista książek", NavButtonType.ADD_BOOK_BUTTON, NavButtonType.RENTALS_BUTTON,
+                            NavButtonType.PROFILE_BUTTON, NavButtonType.LOGOUT_BUTTON);
+        navbar.linkHandlers(this);
+        navbarField.getChildren().add(navbar);
+
+        boolean hasPermissions = Permissions.values()[LoginController.loggedAccount.getPermissions()] != Permissions.USER;
+        Button addBookButton = navbar.getButton(NavButtonType.ADD_BOOK_BUTTON);
+        addBookButton.setDisable(!hasPermissions);
+        Button rentalLstButton = navbar.getButton(NavButtonType.RENTALS_BUTTON);
+        rentalLstButton.setDisable(!hasPermissions);
     }
 
     public void updateBookList() {
@@ -58,35 +71,8 @@ public class BookListController implements NavbarControllerIf {
         bookList.getChildren().add(row);
     }
 
-    public void updateNavbar() {
-        boolean hasPermissions = Permissions.values()[LoginController.loggedAccount.getPermissions()] != Permissions.USER;
-        addBookButton.setDisable(!hasPermissions);
-    }
-
-    @FXML
-    public void handleAddBookClick() {
-        context.publishEvent(new OpenDialogEvent("Dodawanie książki", 360, 500,
-                stage, context, new AddBookCreator(stage)));
-    }
-
     @FXML
     public void handleBookDetailsClicked(MouseEvent event, Book book) {
         context.publishEvent(new ChangeSceneEvent(stage, context, new BookDetailsCreator(book, new BookListCreator())));
-    }
-
-    @FXML
-    public void handleBookListRedirect() {
-        context.publishEvent(new ChangeSceneEvent(stage, context, new BookListCreator()));
-    }
-
-    @FXML
-    public void handleUserClicked() {
-        context.publishEvent(new ChangeSceneEvent(stage, context, new MyRentalsCreator()));
-    }
-
-    @FXML
-    public void handleLogout() {
-        context.publishEvent(new ChangeSceneEvent(stage, context, new LoginCreator()));
-        LoginController.loggedAccount = null;
     }
 }

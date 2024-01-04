@@ -50,7 +50,7 @@ public class RentalEntry extends GridPane {
         imageView.setFitHeight(acceptButtonHeight);
         imageView.setFitWidth(acceptButtonWidth);
         acceptButton.setGraphic(imageView);
-        acceptButton.getStyleClass().add("nav-button");
+        acceptButton.getStyleClass().add("filter-button");
         acceptButton.getStyleClass().add("rental-accept-button");
 
         super.getStyleClass().add("rental-entry");

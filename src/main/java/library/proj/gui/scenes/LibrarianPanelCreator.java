@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 import library.proj.gui.controllers.LibrarianPanelController;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class LibrarianPanelCreator extends SceneCreator {
+public class LibrarianPanelCreator extends SceneWithNavbarCreator {
     public LibrarianPanelCreator() {
         super("Librarian panel scene", "/librarianPanelView.fxml", "/librarianPanelStyles.css");
     }
@@ -14,6 +14,7 @@ public class LibrarianPanelCreator extends SceneCreator {
     public Scene createScene(Stage stage, ConfigurableApplicationContext context) {
         Scene scene = super.createScene(stage, context);
         LibrarianPanelController controller = (LibrarianPanelController)fxmlLoader.getController();
+        controller.setupNavbar();
         controller.updateRentalList();
         return scene;
     }
