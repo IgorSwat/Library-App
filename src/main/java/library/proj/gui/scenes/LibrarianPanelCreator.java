@@ -15,6 +15,7 @@ public class LibrarianPanelCreator extends SceneWithNavbarCreator {
         Scene scene = super.createScene(stage, context);
         LibrarianPanelController controller = (LibrarianPanelController)fxmlLoader.getController();
         controller.setupNavbar();
+        controller.updateCurrentRentals();
         controller.updateRentalList();
         return scene;
     }

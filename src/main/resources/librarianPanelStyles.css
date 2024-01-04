@@ -96,6 +96,10 @@
     -fx-text-fill: #3b2506;
 }
 
+.expired-rental-label {
+    -fx-text-fill: red;
+}
+
 .rental-accept-button {
     -fx-padding: 4;
     -fx-border-radius: 50;

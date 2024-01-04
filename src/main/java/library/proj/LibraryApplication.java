@@ -54,6 +54,9 @@ public class LibraryApplication {
         rentalsService.createRental(rental);
         Rental rental2 = new Rental(baran, puszcza, localDate);
         rentalsService.createRental(rental2);
+        LocalDate oldDate1 = LocalDate.parse("2023-12-27", formatter);
+        LocalDate oldDate2 = LocalDate.parse("2023-12-31", formatter);
+        rentalsService.createRental(new Rental(baran, insygnia, oldDate1, oldDate2));
     }
 
 }

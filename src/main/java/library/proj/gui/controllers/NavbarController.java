@@ -6,7 +6,7 @@ import library.proj.gui.events.OpenDialogEvent;
 import library.proj.gui.scenes.*;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public abstract class NavbarController implements NavbarControllerIf {
+public abstract class NavbarController {
     protected final Stage stage;
     protected final ConfigurableApplicationContext context;
 

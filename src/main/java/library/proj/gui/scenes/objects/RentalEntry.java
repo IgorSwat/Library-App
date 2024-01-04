@@ -9,21 +9,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import library.proj.model.Rental;
+import lombok.Getter;
 
 public class RentalEntry extends GridPane {
+    @Getter
+    private final Rental rental;
+
     private final Label index;
     private final Label userName;
     private final Label bookTitle;
     private final Label start;
     private final Label end;
+    @Getter
     private final Button acceptButton;
 
     private int nextCol = 0;
 
-    private static final double acceptButtonWidth = 21.0;
-    private static final double acceptButtonHeight = 21.0;
+    private static final double acceptButtonWidth = 20.0;
+    private static final double acceptButtonHeight = 20.0;
 
     public RentalEntry(int index, Rental rental) {
+        this.rental = rental;
+
         this.index = new Label();
         this.index.setText(Integer.toString(index));
         this.index.getStyleClass().add("rental-info-label");
@@ -43,6 +50,8 @@ public class RentalEntry extends GridPane {
         end = new Label();
         end.setText(rental.getReturnDate().toString());
         end.getStyleClass().add("rental-info-label");
+        if (rental.isExpired())
+            end.getStyleClass().add("expired-rental-label");
 
         acceptButton = new Button();
         Image image = new Image(getClass().getResource("/images/acceptIcon.png").toExternalForm());

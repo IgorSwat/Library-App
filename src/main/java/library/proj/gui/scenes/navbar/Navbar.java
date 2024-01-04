@@ -21,7 +21,7 @@ import library.proj.gui.controllers.NavbarController;
 
 If you want to add new button with completely new functionality, you should follow these steps:
 1. Add another value to NavButtonType enum
-2. Add another handler method to NavbarControllerIf and it's implementation to NavbarController class
+2. Add another handler method to NavbarController class
 3. Handle the added value case in NavButtonFactory class. You need to handle both creation of button (specify image path)
    and linking it with the right click handler (if you want the button to do something :) )
 
