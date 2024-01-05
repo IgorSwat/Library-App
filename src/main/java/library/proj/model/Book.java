@@ -10,6 +10,7 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
     private int id;
     @Getter
     private String title;

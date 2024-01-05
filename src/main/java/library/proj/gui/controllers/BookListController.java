@@ -42,7 +42,7 @@ public class BookListController extends NavbarController {
         navbar.linkHandlers(this);
         navbarField.getChildren().add(navbar);
 
-        boolean hasPermissions = Permissions.values()[LoginController.loggedAccount.getPermissions()] != Permissions.USER;
+        boolean hasPermissions = LoginController.loggedAccount.getPermissions() != Permissions.USER;
         Button addBookButton = navbar.getButton(NavButtonType.ADD_BOOK_BUTTON);
         addBookButton.setDisable(!hasPermissions);
         Button rentalListButton = navbar.getButton(NavButtonType.RENTALS_BUTTON);

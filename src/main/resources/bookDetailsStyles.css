@@ -3,6 +3,17 @@
     -fx-background-color: #fce3b6;
 }
 
+.image-rating-panel {
+    -fx-alignment: center;
+}
+
+.rating-label {
+    -fx-padding: 12 0 0 0;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
 .rental-button-field {
     -fx-pref-width: 584;
     -fx-pref-height: 39;
@@ -30,4 +41,10 @@
 
 .star-active {
     -fx-fill: gold;
+}
+
+.remove-icon {
+    -fx-padding: 0 0 0 10;
+    -fx-cursor: hand;
+    -fx-alignment: center;
 }

@@ -1,11 +1,16 @@
 package library.proj.gui.scenes.rating;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 
 public class RatingPanel extends HBox implements StarPanelIf {
+    private final RatingHandlerIf ratingHandler;
+
     private final ArrayList<Star> stars = new ArrayList<>();
+    private final HBox removeIcon;
 
     private boolean active = true;
 
@@ -14,7 +19,9 @@ public class RatingPanel extends HBox implements StarPanelIf {
     static private final double starHeight = 35;
     static private final double spacing = 12;
 
-    public RatingPanel() {
+    public RatingPanel(RatingHandlerIf ratingHandler) {
+        this.ratingHandler = ratingHandler;
+
         final double originX = 0.0;
         final double originY = 0.0;
 
@@ -29,13 +36,26 @@ public class RatingPanel extends HBox implements StarPanelIf {
             super.getChildren().add(star);
             stars.add(star);
         }
+
+        Image image = new Image(getClass().getResource("/images/removeIcon.png").toExternalForm());
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(starWidth / 3.0);
+        imageView.setFitHeight(starHeight / 3.0);
+        removeIcon = new HBox();
+        removeIcon.getStyleClass().add("remove-icon");
+        removeIcon.getChildren().add(imageView);
+        removeIcon.setOnMouseClicked(event -> handleRemove());
+    }
+
+    public void setRating(int rating) {
+        activateStars(rating - 1);
+        active = false;
+        super.getChildren().add(removeIcon);
     }
 
     public void handleMouseEnter(int starId) {
-        if (active) {
-            for (int i = 0; i <= starId; i++)
-                stars.get(i).applyStyle("star-active");
-        }
+        if (active)
+            activateStars(starId);
     }
 
     public void handleMouseExit(int starId) {
@@ -46,7 +66,27 @@ public class RatingPanel extends HBox implements StarPanelIf {
     }
 
     public void handleClick(int starId) {
-        handleMouseEnter(starId);
-        active = false;
+        if (active) {
+            int rating = starId + 1;
+            ratingHandler.handleRatingSet(rating);
+            setRating(rating);
+        }
+    }
+
+    public void handleRemove() {
+        deactivateStars();
+        super.getChildren().remove(removeIcon);
+        ratingHandler.handleRatingUnset();
+        active = true;
+    }
+
+    private void activateStars(int lastStar) {
+        for (int i = 0; i <= lastStar; i++)
+            stars.get(i).applyStyle("star-active");
+    }
+
+    private void deactivateStars() {
+        for (int i = 0; i < noStars; i++)
+            stars.get(i).getStyleClass().remove("star-active");
     }
 }

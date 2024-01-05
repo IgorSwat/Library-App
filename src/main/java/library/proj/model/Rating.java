@@ -8,6 +8,7 @@ import lombok.Setter;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
     private int id;
     @ManyToOne
     @JoinColumn(name = "person_id")

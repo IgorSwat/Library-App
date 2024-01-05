@@ -3,7 +3,6 @@ package library.proj.gui.scenes;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.proj.gui.controllers.BookDetailsController;
-import library.proj.gui.controllers.BookListController;
 import library.proj.model.Book;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -20,7 +19,8 @@ public class BookDetailsCreator extends SceneWithNavbarCreator {
         BookDetailsController controller = (BookDetailsController)fxmlLoader.getController();
         controller.setupNavbar();
         controller.setFields();
-        controller.setupRating();
+        controller.setupRatingPanel();
+        controller.setupBookRating();
         return scene;
     }
 

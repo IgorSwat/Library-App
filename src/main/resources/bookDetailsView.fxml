@@ -17,8 +17,11 @@
         <children>
             <HBox alignment="CENTER">
                 <children>
-                    <ImageView fx:id="imageViewField" fitHeight="292.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" />
-                    <VBox alignment="CENTER" styleClass="details-container" style="-fx-padding: 20">
+                    <VBox styleClass="image-rating-panel">
+                        <ImageView fx:id="imageViewField" fitHeight="292.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label styleClass="rating-label" fx:id="ratingLabel" text="Haha!"/>
+                    </VBox>
+                    <VBox alignment="CENTER" styleClass="details-container" style="-fx-padding: 0 0 0 30">
                         <children>
                             <Label fx:id="bookTitleField" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="369.0" text="" textAlignment="RIGHT">
                                 <font>
