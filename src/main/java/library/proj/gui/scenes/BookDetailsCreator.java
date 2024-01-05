@@ -20,6 +20,7 @@ public class BookDetailsCreator extends SceneWithNavbarCreator {
         BookDetailsController controller = (BookDetailsController)fxmlLoader.getController();
         controller.setupNavbar();
         controller.setFields();
+        controller.setupRating();
         return scene;
     }
 

@@ -18,7 +18,7 @@
             <HBox alignment="CENTER">
                 <children>
                     <ImageView fx:id="imageViewField" fitHeight="292.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" />
-                    <VBox alignment="CENTER" styleClass="details-container">
+                    <VBox alignment="CENTER" styleClass="details-container" style="-fx-padding: 20">
                         <children>
                             <Label fx:id="bookTitleField" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="369.0" text="" textAlignment="RIGHT">
                                 <font>
@@ -49,6 +49,8 @@
                                     <Label fx:id="statusField" prefHeight="17.0" prefWidth="199.0" text="status" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 </children>
                             </GridPane>
+                            <HBox fx:id="ratingField" styleClass="rating-field">
+                            </HBox>
                         </children>
                     </VBox>
                 </children>

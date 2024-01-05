@@ -1,6 +1,9 @@
 package library.proj.gui.controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,6 +13,7 @@ import library.proj.gui.events.OpenDialogEvent;
 import library.proj.gui.scenes.*;
 import library.proj.gui.scenes.navbar.NavButtonType;
 import library.proj.gui.scenes.navbar.Navbar;
+import library.proj.gui.scenes.rating.RatingPanel;
 import library.proj.model.Book;
 import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
@@ -23,6 +27,10 @@ public class BookDetailsController extends NavbarController {
     @FXML
     private HBox navbarField;
     private Navbar navbar = null;
+
+    @FXML
+    private HBox ratingField;
+    private RatingPanel rating = null;
 
     @FXML
     public Label bookTitleField;
@@ -52,6 +60,11 @@ public class BookDetailsController extends NavbarController {
         boolean hasPermissions = Permissions.values()[LoginController.loggedAccount.getPermissions()] != Permissions.USER;
         Button rentalListButton = navbar.getButton(NavButtonType.RENTALS_BUTTON);
         rentalListButton.setDisable(!hasPermissions);
+    }
+
+    public void setupRating() {
+        rating = new RatingPanel();
+        ratingField.getChildren().add(rating);
     }
 
     public void setFields() {
