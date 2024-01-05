@@ -10,52 +10,53 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox styleClass="login-container" alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox alignment="CENTER">
-         <children>
-            <ImageView fx:id="imageViewField" fitHeight="292.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" />
-            <VBox alignment="CENTER" styleClass="login-container">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox fx:id="navbarField">
+    </HBox>
+    <VBox styleClass="details-container" style="-fx-pref-height: 540" alignment="CENTER">
+        <children>
+            <HBox alignment="CENTER">
                 <children>
-                    <Label fx:id="bookTitleField" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="369.0" text="" textAlignment="RIGHT">
-                        <font>
-                            <Font size="36.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="authorField" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="369.0" text="author">
-                        <font>
-                            <Font size="24.0" />
-                        </font>
-                    </Label>
-                    <GridPane alignment="CENTER" prefHeight="90.0" prefWidth="200.0">
-                        <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="170.0" />
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="199.0" />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        </rowConstraints>
+                    <ImageView fx:id="imageViewField" fitHeight="292.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" />
+                    <VBox alignment="CENTER" styleClass="details-container">
                         <children>
-                            <Label prefHeight="17.0" prefWidth="45.0" text="cover:" />
-                            <Label prefHeight="17.0" prefWidth="54.0" text="contents:" GridPane.rowIndex="1" />
-                            <Label prefHeight="17.0" prefWidth="47.0" text="status:" GridPane.rowIndex="2" />
-                            <Label fx:id="coverField" prefHeight="17.0" prefWidth="199.0" text="cover1" GridPane.columnIndex="1" />
-                            <Label fx:id="contentField" prefHeight="17.0" prefWidth="198.0" text="contents" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                            <Label fx:id="statusField" prefHeight="17.0" prefWidth="199.0" text="status" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <Label fx:id="bookTitleField" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="369.0" text="" textAlignment="RIGHT">
+                                <font>
+                                    <Font size="36.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="authorField" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="369.0" text="author">
+                                <font>
+                                    <Font size="24.0" />
+                                </font>
+                            </Label>
+                            <GridPane alignment="CENTER" prefHeight="90.0" prefWidth="200.0">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="170.0" />
+                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="199.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                <children>
+                                    <Label prefHeight="17.0" prefWidth="45.0" text="cover:" />
+                                    <Label prefHeight="17.0" prefWidth="54.0" text="contents:" GridPane.rowIndex="1" />
+                                    <Label prefHeight="17.0" prefWidth="47.0" text="status:" GridPane.rowIndex="2" />
+                                    <Label fx:id="coverField" prefHeight="17.0" prefWidth="199.0" text="cover1" GridPane.columnIndex="1" />
+                                    <Label fx:id="contentField" prefHeight="17.0" prefWidth="198.0" text="contents" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="statusField" prefHeight="17.0" prefWidth="199.0" text="status" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                </children>
+                            </GridPane>
                         </children>
-                    </GridPane>
+                    </VBox>
                 </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="584.0" spacing="50.0">
-         <children>
-            <Button mnemonicParsing="false" onMouseClicked="#handleBackButton" text="Wróć" />
-            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" text="Wypożycz" />
-         </children>
-      </HBox>
-   </children>
+            </HBox>
+            <HBox styleClass="rental-button-field">
+                <Button styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBackButton" text="Wróć" />
+                <Button styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" text="Wypożycz" />
+            </HBox>
+        </children>
+    </VBox>
 </VBox>
