@@ -49,7 +49,7 @@ public class MyRentalsController {
     }
 
     public void handleBookDetailsClicked(MouseEvent event, Book book){
-        context.publishEvent(new ChangeSceneEvent(stage,context, new BookDetailsCreator(book, new MyRentalsCreator())));
+        context.publishEvent(new ChangeSceneEvent(stage,context, new BookDetailsCreator(book)));
     }
 
 }

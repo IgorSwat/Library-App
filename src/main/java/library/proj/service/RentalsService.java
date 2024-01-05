@@ -1,11 +1,13 @@
 package library.proj.service;
 
+import library.proj.model.Book;
 import library.proj.model.Person;
 import library.proj.model.Rental;
 import library.proj.repository.RentalsRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +27,12 @@ public class RentalsService {
 
     public List<Rental> getRentalsByUser(Person person) {
         List<Rental> rentals = getAllRentals();
-        return rentals.stream().filter(rental -> rental.getPerson() == person).toList();
+        return rentals.stream().filter(rental -> rental.getPerson().getId() == person.getId()).toList();
+    }
+
+    public List<Rental> getRentalsByUser(Person person, Book book) {
+        List<Rental> rentals = getRentalsByUser(person);
+        return rentals.stream().filter(rental -> rental.getBook().getId() == book.getId()).toList();
     }
 
     public List<Rental> getNotReturnedBooks() {

@@ -42,11 +42,11 @@ public class BookListController extends NavbarController {
         navbar.linkHandlers(this);
         navbarField.getChildren().add(navbar);
 
-        boolean hasPermissions = Permissions.values()[LoginController.loggedAccount.getPermissions()] != Permissions.USER;
+        boolean hasPermissions = LoginController.loggedAccount.getPermissions() != Permissions.USER;
         Button addBookButton = navbar.getButton(NavButtonType.ADD_BOOK_BUTTON);
         addBookButton.setDisable(!hasPermissions);
-        Button rentalLstButton = navbar.getButton(NavButtonType.RENTALS_BUTTON);
-        rentalLstButton.setDisable(!hasPermissions);
+        Button rentalListButton = navbar.getButton(NavButtonType.RENTALS_BUTTON);
+        rentalListButton.setDisable(!hasPermissions);
     }
 
     public void updateBookList() {
@@ -73,6 +73,6 @@ public class BookListController extends NavbarController {
 
     @FXML
     public void handleBookDetailsClicked(MouseEvent event, Book book) {
-        context.publishEvent(new ChangeSceneEvent(stage, context, new BookDetailsCreator(book, new BookListCreator())));
+        context.publishEvent(new ChangeSceneEvent(stage, context, new BookDetailsCreator(book)));
     }
 }

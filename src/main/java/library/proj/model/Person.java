@@ -10,6 +10,7 @@ import java.util.List;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
     private int id;
     @Getter
     private String firstName;
@@ -20,7 +21,6 @@ public class Person {
     private String email;
     @Getter
     private String password;
-    @Getter
     private int permissions;
     @Getter
     //    TODO: przy lazy ładowaniu wywala błędy, na razie dałem eager, ale może da się to jakoś mądrzej zrobić
@@ -40,6 +40,8 @@ public class Person {
     }
 
     public String getFullName() { return firstName + " " + lastName; }
+
+    public Permissions getPermissions() {return Permissions.values()[permissions];}
 
     public String toString() {
         return getFullName() + "   |   " + Permissions.values()[permissions];

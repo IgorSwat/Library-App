@@ -29,6 +29,7 @@ public class RentalEntry extends GridPane {
     private static final double acceptButtonHeight = 20.0;
 
     public RentalEntry(int index, Rental rental) {
+        super();
         this.rental = rental;
 
         this.index = new Label();
