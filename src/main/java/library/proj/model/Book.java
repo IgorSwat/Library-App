@@ -30,8 +30,11 @@ public class Book {
     private List<Rental> rentals;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Reservation> reservations;
 
-    public Book() {}
+    public Book() {
+    }
 
     public Book(String title, String author, String cover, String contents, Status status, String imagePath) {
         this.title = title;
@@ -40,15 +43,23 @@ public class Book {
         this.contents = contents;
         this.status = status;
         this.views = 0;
-        this.imagePath=imagePath;
+        this.imagePath = imagePath;
     }
 
-    public void updateViews(int views) {this.views = views;}
+    public void updateViews(int views) {
+        this.views = views;
+    }
 
     public void registerRental(Rental rental) {
         if (rentals == null)
             rentals = new ArrayList<>();
         rentals.add(rental);
+    }
+
+    public void addReservation(Reservation reservation) {
+        if (reservations == null)
+            reservations = new ArrayList<>();
+        reservations.add(reservation);
     }
 
     public void addRating(Rating rating) {
