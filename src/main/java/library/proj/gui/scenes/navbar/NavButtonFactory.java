@@ -1,6 +1,7 @@
 package library.proj.gui.scenes.navbar;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import library.proj.gui.controllers.NavbarController;
@@ -17,7 +18,7 @@ public class NavButtonFactory {
             case BOOK_LIST_BUTTON -> button.setOnAction(event -> controller.handleBookListRedirect());
             case RENTALS_BUTTON -> button.setOnAction(event -> controller.handleRentalListRedirect());
             case ADD_BOOK_BUTTON -> button.setOnAction(event -> controller.handleAddBookClick());
-        };
+        }
         return button;
     }
 
@@ -26,17 +27,18 @@ public class NavButtonFactory {
         double buttonWidth = 26;
 
         return switch (type) {  // Nie wiadomo czy pierwsze / jest potrzebne
-            case LOGOUT_BUTTON -> createButton(buttonHeight, buttonWidth, "images/logoutIcon.png");
-            case PROFILE_BUTTON -> createButton(buttonHeight, buttonWidth, "images/userIcon.png");
-            case BOOK_LIST_BUTTON -> createButton(buttonHeight, buttonWidth, "images/bookIcon.png");
-            case RENTALS_BUTTON -> createButton(buttonHeight, buttonWidth, "images/bookingIcon.png");
-            case ADD_BOOK_BUTTON -> createButton(buttonHeight, buttonWidth, "images/plusIcon.png");
+            case LOGOUT_BUTTON -> createButton(buttonHeight, buttonWidth, "images/logoutIcon.png", "Wyloguj");
+            case PROFILE_BUTTON -> createButton(buttonHeight, buttonWidth, "images/userIcon.png", "Profil");
+            case BOOK_LIST_BUTTON -> createButton(buttonHeight, buttonWidth, "images/bookIcon.png", "Lista książek");
+            case RENTALS_BUTTON -> createButton(buttonHeight, buttonWidth, "images/bookingIcon.png", "Wypożyczenia");
+            case ADD_BOOK_BUTTON -> createButton(buttonHeight, buttonWidth, "images/plusIcon.png", "Dodaj książkę");
         };
     }
 
-    private Button createButton(double height, double width, String iconPath) {
+    private Button createButton(double height, double width, String iconPath, String tooltipText) {
         Button button = new Button();
         button.getStyleClass().add("nav-button");
+        button.setTooltip(new Tooltip(tooltipText));
 
         ClassLoader classLoader = getClass().getClassLoader();
         URL iconUrl = classLoader.getResource(iconPath);
