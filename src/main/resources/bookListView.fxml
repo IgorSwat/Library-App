@@ -5,15 +5,36 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import java.lang.String?>
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <HBox fx:id="navbarField">
     </HBox>
 
+    <HBox styleClass="filter-bar">
+        <Label text="Autor:">
+            <styleClass>
+                <String fx:value="filter-label"/>
+                <String fx:value="first-label"/>
+            </styleClass>
+        </Label>
+        <TextField styleClass="filter-input" fx:id="bookAuthorField" />
+        <Label styleClass="filter-label" text="Tytuł:" />
+        <TextField styleClass="filter-input" fx:id="bookTitleField" />
+        <CheckBox styleClass="filter-checkbox" text="Dostępne" fx:id="availableCheck" />
+        <Button styleClass="filter-button" onAction="#handleFilterBooks">
+            <graphic>
+                <ImageView fitHeight="22" fitWidth="22">
+                    <Image url="/images/glass.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+
     <StackPane styleClass="scrollable-panel-container">
-        <ImageView styleClass="scrollable-panel-background" fitHeight="540" fitWidth="800">
+        <ImageView styleClass="scrollable-panel-background" fitHeight="500" fitWidth="800">
             <Image url="/images/library-background.jpg" />
         </ImageView>
-        <VBox prefHeight="540" prefWidth="800">
+        <VBox prefHeight="500" prefWidth="800">
             <VBox fx:id="bookList" styleClass="book-list" >
             </VBox>
             <HBox fx:id="paginationField" prefWidth="800" prefHeight="60">

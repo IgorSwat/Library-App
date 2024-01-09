@@ -38,4 +38,8 @@ public abstract class NavbarController {
         context.publishEvent(new ChangeSceneEvent(stage, context, new LoginCreator()));
         LoginController.loggedAccount = null;
     }
+
+    public void handleRecommendationsClick() {
+        context.publishEvent(new ChangeSceneEvent(stage, context, new RecommendationsCreator()));
+    }
 }
