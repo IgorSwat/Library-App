@@ -35,7 +35,7 @@ public class LibraryApplication {
 
     private void addBookExamples(BooksService booksService, RentalsService rentalsService, PersonService personService) {
 
-        Book puszcza = new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "Twarda", "przygody Stasia i Nel", Status.AVAILABLE,"/binaries/w_pustyni_i_w_puszczy.jpg");
+        Book puszcza = new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", "Twarda", "przygody Stasia i Nel", Status.NOT_AVAILABLE,"/binaries/w_pustyni_i_w_puszczy.jpg");
         booksService.createBook(puszcza);
         booksService.createBook(new Book("Harry Potter i Kamień Filozoficzny", "J.K. Rowling", "Miękka", "Pierwsza część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/kamien_filozoficzny.jpg"));
         booksService.createBook(new Book("Harry Potter i Komnata Tajemnic", "J.K. Rowling", "Miękka", "Druga część przygód młodego czarodzieja", Status.AVAILABLE,"/binaries/komnata_tajemnic.jpg"));

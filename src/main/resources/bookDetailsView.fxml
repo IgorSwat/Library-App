@@ -62,6 +62,7 @@
                 <Button styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBackButton" text="Wróć" />
                 <Button fx:id="reserveButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleReserveBook" text="Rezerwuj" />
                 <Button fx:id="borrowButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" text="Wypożycz" />
+                <Button fx:id="notifyButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleNotify" text="Powiadom" />
             </HBox>
         </children>
     </VBox>

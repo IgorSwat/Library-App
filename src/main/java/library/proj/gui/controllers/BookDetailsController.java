@@ -58,6 +58,9 @@ public class BookDetailsController extends NavbarController implements RatingHan
     @FXML
     private Button borrowButton;
 
+    @FXML
+    private Button notifyButton;
+
 
     public BookDetailsController(Stage stage, ConfigurableApplicationContext context, Book book) {
         super(stage, context);
@@ -121,6 +124,12 @@ public class BookDetailsController extends NavbarController implements RatingHan
         statusField.setText(book.getStatus().toString());
         Image img = new Image(book.getImagePath());
         imageViewField.setImage(img);
+        if (LoginController.loggedAccount.getPermissions() == Permissions.USER) {
+            borrowButton.setDisable(true);
+        }
+        if(this.book.isAvailable()){
+            notifyButton.setDisable(true);
+        }
     }
 
     public void handleRatingSet(int rating) {
@@ -147,6 +156,11 @@ public class BookDetailsController extends NavbarController implements RatingHan
     @FXML
     private void handleBackButton() {
         context.publishEvent(new ChangeSceneEvent(stage, context, new BookListCreator()));
+    }
+
+    @FXML
+    private void handleNotify() {
+        System.out.println("powiadom");
     }
 
     @FXML
