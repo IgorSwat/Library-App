@@ -85,7 +85,7 @@ public class RentBookController {
             errorLabel.setText("Książka jest wypożyczona przez kogoś innego");
             return false;
         }
-        if(book.hasOverlappingReservation(startDate.getValue(), startDate.getValue())){
+        if(book.hasOverlappingActiveReservation(startDate.getValue(), startDate.getValue())){
             errorLabel.setText("Książka ma nakładającą się rezerwację");
             return false;
         }

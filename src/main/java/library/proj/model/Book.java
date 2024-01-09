@@ -81,9 +81,9 @@ public class Book {
         return false;
     }
 
-    public boolean hasOverlappingReservation(LocalDate startDate, LocalDate endDate){
+    public boolean hasOverlappingActiveReservation(LocalDate startDate, LocalDate endDate){
         for(Reservation reservation : reservations){
-            if (reservation.overlaps(startDate, endDate))
+            if (reservation.overlaps(startDate, endDate) && reservation.isActive())
                 return true;
         }
         return false;

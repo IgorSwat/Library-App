@@ -9,13 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.scenes.BookListCreator;
-import library.proj.model.Book;
-import library.proj.model.Person;
-import library.proj.model.Rental;
-import library.proj.model.Status;
+import library.proj.model.*;
 import library.proj.service.BooksService;
 import library.proj.service.PersonService;
-import library.proj.service.RentalsService;
+import library.proj.service.ReservationsService;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.time.LocalDate;
@@ -25,7 +22,7 @@ public class ReserveBookController {
     private final Stage stage;
     private final ConfigurableApplicationContext context;
     private final BooksService booksService;
-    private final RentalsService rentalsService;
+    private final ReservationsService reservationsService;
     private final PersonService personService;
     private final Book book;
     @FXML
@@ -51,7 +48,7 @@ public class ReserveBookController {
         this.context = context;
         this.book = book;
         this.booksService = context.getBean(BooksService.class);
-        this.rentalsService = context.getBean(RentalsService.class);
+        this.reservationsService = context.getBean(ReservationsService.class);
         this.personService = context.getBean(PersonService.class);
     }
 
@@ -59,15 +56,13 @@ public class ReserveBookController {
     public void handleReserveClick() {
         String email = customerEmail.getText();
         Person person = personService.getPerson(email);
-//        if (!validateReservationRequirements(person, date))
-//            return;
-//        book.setStatus(Status.NOT_AVAILABLE);
-//        Rental rental = new Rental(LoginController.loggedAccount, book, date);
-//        rentalsService.createRental(rental);
-//        booksService.saveBook(book);
-//        context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
-//        stage.close();
-        System.out.println(validateReservationRequirements(person, startDate.getValue(), endDate.getValue()));
+        if (!validateReservationRequirements(person, startDate.getValue(), endDate.getValue()))
+            return;
+        Reservation reservation = new Reservation(LoginController.loggedAccount, book, startDate.getValue(), endDate.getValue());
+        reservationsService.createReservation(reservation);
+        booksService.saveBook(book);
+        context.publishEvent(new ChangeSceneEvent(primaryStage, context, new BookListCreator()));
+        stage.close();
     }
 
     private boolean validateReservationRequirements(Person person, LocalDate startDate, LocalDate endDate) {
@@ -91,7 +86,7 @@ public class ReserveBookController {
             errorLabel.setText("Książka jest wypożyczona przez kogoś innego");
             return false;
         }
-        if(book.hasOverlappingReservation(startDate, endDate)){
+        if(book.hasOverlappingActiveReservation(startDate, endDate)){
             errorLabel.setText("Książka ma nakładającą się rezerwację");
             return false;
         }
