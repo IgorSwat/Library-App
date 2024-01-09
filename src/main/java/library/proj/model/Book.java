@@ -3,6 +3,7 @@ package library.proj.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,22 @@ public class Book {
 
     public boolean isAvailable() {
         return status == Status.AVAILABLE;
+    }
+
+    public boolean isRentedNow(){
+        for(Rental rental: rentals){
+            if (rental.isActiveNow())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasOverlappingReservation(LocalDate startDate, LocalDate endDate){
+        for(Reservation reservation : reservations){
+            if (reservation.overlaps(startDate, endDate))
+                return true;
+        }
+        return false;
     }
 
     public void setStatus(Status status) {

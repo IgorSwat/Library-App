@@ -45,4 +45,8 @@ public class Reservation {
         person.addReservation(this);
         book.addReservation(this);
     }
+
+    public boolean overlaps(LocalDate from, LocalDate to){
+         return !(from.isAfter(endDate) || to.isBefore(startDate)) ;
+    }
 }

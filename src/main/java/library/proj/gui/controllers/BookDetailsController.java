@@ -160,6 +160,6 @@ public class BookDetailsController extends NavbarController implements RatingHan
 
     @FXML
     private void handleReserveBook() {
-        System.out.println("Reserve clicked");
-    }
+        context.publishEvent(new OpenDialogEvent("Rezerwacja książki", 360, 500,
+                stage, context, new ReserveBookCreator(stage, book)));    }
 }
