@@ -53,6 +53,10 @@ public class BookDetailsController extends NavbarController implements RatingHan
     private Label statusField;
     @FXML
     private ImageView imageViewField;
+    @FXML
+    private Button reserveButton;
+    @FXML
+    private Button borrowButton;
 
 
     public BookDetailsController(Stage stage, ConfigurableApplicationContext context, Book book) {
@@ -62,7 +66,7 @@ public class BookDetailsController extends NavbarController implements RatingHan
     }
 
     public void setupNavbar() {
-        navbar = new Navbar(book.getTitle(), NavButtonType.RENTALS_BUTTON,
+        navbar = new Navbar(book.getTitle(), NavButtonType.BOOK_LIST_BUTTON, NavButtonType.RENTALS_BUTTON,
                 NavButtonType.PROFILE_BUTTON, NavButtonType.LOGOUT_BUTTON);
         navbar.linkHandlers(this);
         navbarField.getChildren().add(navbar);
@@ -92,15 +96,21 @@ public class BookDetailsController extends NavbarController implements RatingHan
         if (bookRatings.isEmpty()) {
             ratingsSum = 0.0;
             noRatings = 0;
-        }
-        else {
+        } else {
             double sum = 0.0;
             for (Rating rating : bookRatings)
-                sum += (double)rating.getRating();
+                sum += (double) rating.getRating();
             ratingsSum = sum;
             noRatings = bookRatings.size();
         }
         updateRatingLabel();
+    }
+
+    public void setupButtons() {
+        if (LoginController.loggedAccount.getPermissions() == Permissions.USER) {
+            borrowButton.setVisible(false);
+            borrowButton.setManaged(false);
+        }
     }
 
     public void setFields() {
@@ -147,4 +157,9 @@ public class BookDetailsController extends NavbarController implements RatingHan
         context.publishEvent(new OpenDialogEvent("Wypożyczanie książki", 360, 500,
                 stage, context, new RentBookCreator(stage, book)));
     }
+
+    @FXML
+    private void handleReserveBook() {
+        context.publishEvent(new OpenDialogEvent("Rezerwacja książki", 360, 500,
+                stage, context, new ReserveBookCreator(stage, book)));    }
 }

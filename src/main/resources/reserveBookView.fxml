@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<VBox styleClass="book-property-list" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <Label styleClass="book-property-list-header" text="Rezerwuj książkę"/>
+    <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+    <HBox styleClass="book-property-entry">
+        <Label styleClass="book-property-label" text="Tytuł:"/>
+        <Label fx:id="titleLabel" styleClass="book-property-label"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <Label styleClass="book-property-label" text="Autor:"/>
+        <Label fx:id="authorLabel" styleClass="book-property-label"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <Label styleClass="book-property-label" text="Dostępność:"/>
+        <Label fx:id="availabilityLabel" styleClass="book-property-label"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <TextField fx:id="customerEmail" promptText="Email" styleClass="book-property-label"/>
+    </HBox>
+    <HBox styleClass="book-property-entry">
+        <DatePicker fx:id="startDate" promptText="Od dnia"/>
+        <DatePicker fx:id="endDate" promptText="Do dnia"/>
+    </HBox>
+
+    <Button onAction="#handleReserveClick" style="-fx-font-size: 12" styleClass="add-button" text="Rezerwuj"/>
+    <Label fx:id="errorLabel" styleClass="error-label"/>
+</VBox>

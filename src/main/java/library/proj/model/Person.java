@@ -17,7 +17,7 @@ public class Person {
     @Getter
     private String lastName;
     @Getter
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
     @Getter
     private String password;
@@ -28,8 +28,11 @@ public class Person {
     private List<Rental> rentals;
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings;
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Reservation> reservations;
 
-    public Person() {}
+    public Person() {
+    }
 
     public Person(String firstName, String lastName, String email, String password, Permissions permissions) {
         this.firstName = firstName;
@@ -57,5 +60,11 @@ public class Person {
         if (ratings == null)
             ratings = new ArrayList<>();
         ratings.add(rating);
+    }
+
+    public void addReservation(Reservation reservation) {
+        if (reservations == null)
+            reservations = new ArrayList<>();
+        reservations.add(reservation);
     }
 }

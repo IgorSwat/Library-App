@@ -21,6 +21,7 @@ public class BookDetailsCreator extends SceneWithNavbarCreator {
         controller.setFields();
         controller.setupRatingPanel();
         controller.setupBookRating();
+        controller.setupButtons();
         return scene;
     }
 

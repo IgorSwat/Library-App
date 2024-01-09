@@ -3,6 +3,7 @@ package library.proj.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,11 @@ public class Book {
     private List<Rental> rentals;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rating> ratings;
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Reservation> reservations;
 
-    public Book() {}
+    public Book() {
+    }
 
     public Book(String title, String author, String cover, String contents, Status status, String imagePath) {
         this.title = title;
@@ -40,15 +44,23 @@ public class Book {
         this.contents = contents;
         this.status = status;
         this.views = 0;
-        this.imagePath=imagePath;
+        this.imagePath = imagePath;
     }
 
-    public void updateViews(int views) {this.views = views;}
+    public void updateViews(int views) {
+        this.views = views;
+    }
 
     public void registerRental(Rental rental) {
         if (rentals == null)
             rentals = new ArrayList<>();
         rentals.add(rental);
+    }
+
+    public void addReservation(Reservation reservation) {
+        if (reservations == null)
+            reservations = new ArrayList<>();
+        reservations.add(reservation);
     }
 
     public void addRating(Rating rating) {
@@ -59,6 +71,22 @@ public class Book {
 
     public boolean isAvailable() {
         return status == Status.AVAILABLE;
+    }
+
+    public boolean isRentedNow(){
+        for(Rental rental: rentals){
+            if (rental.isActiveNow())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasOverlappingActiveReservation(LocalDate startDate, LocalDate endDate){
+        for(Reservation reservation : reservations){
+            if (reservation.overlaps(startDate, endDate) && reservation.isActive())
+                return true;
+        }
+        return false;
     }
 
     public void setStatus(Status status) {

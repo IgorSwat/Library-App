@@ -34,6 +34,10 @@ public abstract class NavbarController {
         context.publishEvent(new ChangeSceneEvent(stage, context, new MyRentalsCreator()));
     }
 
+    public void handleReservationsClick() {
+        context.publishEvent(new ChangeSceneEvent(stage, context, new MyReservationsCreator()));
+    }
+
     public void handleLogout() {
         context.publishEvent(new ChangeSceneEvent(stage, context, new LoginCreator()));
         LoginController.loggedAccount = null;
