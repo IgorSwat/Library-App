@@ -52,6 +52,8 @@ public class BookDetailsController extends NavbarController implements RatingHan
     @FXML
     private Label statusField;
     @FXML
+    private Label infoLabel;
+    @FXML
     private ImageView imageViewField;
     @FXML
     private Button reserveButton;
@@ -160,7 +162,8 @@ public class BookDetailsController extends NavbarController implements RatingHan
 
     @FXML
     private void handleNotify() {
-        System.out.println("powiadom");
+        book.addNotifyPerson(LoginController.loggedAccount);
+        infoLabel.setText("Zostaniesz powiadomiony gdy książka będzie dostępna.");
     }
 
     @FXML

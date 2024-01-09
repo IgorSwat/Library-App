@@ -13,15 +13,15 @@
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <HBox fx:id="navbarField">
     </HBox>
-    <VBox styleClass="details-container" style="-fx-pref-height: 540" alignment="CENTER">
+    <VBox alignment="CENTER" style="-fx-pref-height: 540" styleClass="details-container">
         <children>
             <HBox alignment="CENTER">
                 <children>
                     <VBox styleClass="image-rating-panel">
                         <ImageView fx:id="imageViewField" fitHeight="292.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label styleClass="rating-label" fx:id="ratingLabel" text="Haha!"/>
+                        <Label fx:id="ratingLabel" styleClass="rating-label" text="Haha!" />
                     </VBox>
-                    <VBox alignment="CENTER" styleClass="details-container" style="-fx-padding: 0 0 0 30">
+                    <VBox alignment="CENTER" style="-fx-padding: 0 0 0 30" styleClass="details-container">
                         <children>
                             <Label fx:id="bookTitleField" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="369.0" text="" textAlignment="RIGHT">
                                 <font>
@@ -59,11 +59,13 @@
                 </children>
             </HBox>
             <HBox styleClass="rental-button-field">
-                <Button styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBackButton" text="Wróć" />
-                <Button fx:id="reserveButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleReserveBook" text="Rezerwuj" />
-                <Button fx:id="borrowButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" text="Wypożycz" />
-                <Button fx:id="notifyButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleNotify" text="Powiadom" />
+                <Button mnemonicParsing="false" onMouseClicked="#handleBackButton" styleClass="rental-button" text="Wróć" />
+                <Button fx:id="reserveButton" mnemonicParsing="false" onMouseClicked="#handleReserveBook" styleClass="rental-button" text="Rezerwuj" />
+                <Button fx:id="borrowButton" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" styleClass="rental-button" text="Wypożycz" />
+                <Button fx:id="notifyButton" mnemonicParsing="false" onMouseClicked="#handleNotify" styleClass="rental-button" text="Powiadom" />
             </HBox>
+            <Label fx:id="infoLabel"><font> <Font size="18.0" /> </font></Label>
         </children>
     </VBox>
+
 </VBox>

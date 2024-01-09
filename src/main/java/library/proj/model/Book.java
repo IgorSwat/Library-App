@@ -1,11 +1,13 @@
 package library.proj.model;
 
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Book {
@@ -33,6 +35,9 @@ public class Book {
     private List<Rating> ratings;
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reservation> reservations;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Person> notifyPersons=new LinkedHashSet<>();
+
 
     public Book() {
     }
@@ -49,6 +54,46 @@ public class Book {
 
     public void updateViews(int views) {
         this.views = views;
+    }
+
+    public void addNotifyPerson(Person person){
+        notifyPersons.add(person);
+    }
+
+    private Person getPersonToNotify(){
+        Iterator<Person> iter=notifyPersons.iterator();
+        if(iter.hasNext()){
+            Person pers=iter.next();
+            notifyPersons.remove(pers);
+            return pers;
+        }
+        return null;
+    }
+
+    public void notifyPerson() throws MessagingException {
+        Person pers=getPersonToNotify();
+        if (pers!=null){
+            System.out.println("wysyłam mail");
+            Properties prop = new Properties();
+            prop.put("mail.smtp.host", "smtp.gmail.com");
+            prop.put("mail.smtp.port", "587");
+            prop.put("mail.smtp.auth", "true");
+            prop.put("mail.smtp.starttls.enable", "true");
+
+            Session session = Session.getInstance(prop,
+                    new Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication("username@abc.pl", "password");
+                        }
+                    });
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("czytelnia@agh.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(pers.getEmail()));
+            message.setSubject("Dostępność książki");
+            message.setText("Twoja książka "+title+ " jest już dostepna");
+
+            Transport.send(message);
+        }
     }
 
     public void registerRental(Rental rental) {
