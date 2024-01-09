@@ -20,7 +20,7 @@ public class AddBookController {
     private final ConfigurableApplicationContext context;
     private final BooksService booksService;
 
-    private static final String noImage = "/images/no_image.jpg";
+    private static final String noImage = "/images/no_image.png";
     private String coverImagePath = noImage;
 
     @FXML

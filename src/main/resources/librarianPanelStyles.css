@@ -75,8 +75,9 @@
 }
 
 .rental-list {
+    -fx-pref-height: 425;
     -fx-min-width: 720;
-    -fx-padding: 20 40 0 40;
+    -fx-padding: 15 40 0 40;
     -fx-spacing: 10;
     -fx-alignment: top-center;
     -fx-background-color: transparent;

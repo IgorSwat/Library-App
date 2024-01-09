@@ -39,3 +39,53 @@
     -fx-effect: innershadow(gaussian, rgba(0,0,0,0.9), 12, 0, 0, 0);
     -fx-border-insets: 0;
 }
+
+.pagination-container {
+    -fx-pref-height: 40;
+    -fx-pref-width: 800;
+}
+
+.pagination-panel {
+    -fx-padding: 0 0 20 0;
+    -fx-spacing: 20;
+    -fx-alignment: bottom-center;
+}
+
+.pagination-button {
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+    -fx-padding: 0;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-background-color: #fcdca4;
+    -fx-border-width: 2;
+    -fx-border-color: #3b2506;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-cursor: hand;
+}
+
+.pagination-central-button {
+    -fx-border-width: 5;
+    -fx-cursor: arrow;
+}
+
+.pagination-central-button:hover {
+    -fx-effect: null;
+}
+
+.pagination-central-button:pressed {
+    -fx-background-color: #fcdca4;
+    -fx-effect: null;
+}
+
+.pagination-button:hover {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.6), 10, 0, 0, 0);
+}
+
+.pagination-button:pressed {
+    -fx-background-color: #fce3b6;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.9), 12, 0, 0, 0);
+    -fx-border-insets: 0;
+}
