@@ -14,7 +14,8 @@ public class BookListCreator extends SceneWithNavbarCreator {
         Scene scene = super.createScene(stage, context);
         BookListController controller = (BookListController)fxmlLoader.getController();
         controller.setupNavbar();
-        controller.updateBookList();
+        controller.setupPagination();
+        controller.updateItemsList();
         return scene;
     }
 

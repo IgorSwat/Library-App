@@ -10,13 +10,15 @@ import javafx.stage.Stage;
 import library.proj.gui.scenes.navbar.NavButtonType;
 import library.proj.gui.scenes.navbar.Navbar;
 import library.proj.gui.scenes.objects.RentalEntry;
+import library.proj.gui.scenes.pagination.PaginationBar3x;
+import library.proj.gui.scenes.pagination.PaginationHandlerIf;
 import library.proj.model.Rental;
 import library.proj.service.RentalsService;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.List;
 
-public class LibrarianPanelController extends NavbarController {
+public class LibrarianPanelController extends NavbarController implements PaginationHandlerIf {
     private final RentalsService rentalsService;
 
     private List<Rental> currentRentals = null;
@@ -27,6 +29,10 @@ public class LibrarianPanelController extends NavbarController {
     private Navbar navbar = null;
 
     @FXML
+    private HBox paginationField;
+    private PaginationBar3x pagination = null;
+
+    @FXML
     private TextField userNameField;
     @FXML
     private TextField bookTitleField;
@@ -35,9 +41,13 @@ public class LibrarianPanelController extends NavbarController {
     @FXML
     private VBox rentalList;
 
+    private static final int itemsPerPage = 8;
+
     public LibrarianPanelController(Stage stage, ConfigurableApplicationContext context) {
         super(stage, context);
         this.rentalsService = context.getBean(RentalsService.class);
+
+        loadCurrentRentals();
     }
 
     public void setupNavbar() {
@@ -46,16 +56,26 @@ public class LibrarianPanelController extends NavbarController {
         navbarField.getChildren().add(navbar);
     }
 
-    public void updateCurrentRentals() {
+    public void setupPagination() {
+        pagination = new PaginationBar3x(itemsPerPage, currentRentals.size());
+        pagination.setupHandler(this);
+        paginationField.getChildren().add(pagination);
+    }
+
+    public void loadCurrentRentals() {
         currentRentals = rentalsService.getCurrentRentals();
         filteredRentals = currentRentals;
     }
 
-    public void updateRentalList() {
+    public void updateItemsList() {
         rentalList.getChildren().clear();
 
-        int id = 1;
-        for (Rental rental : filteredRentals) {
+        int lowerBound = pagination.getPageLowerBound();
+        int upperBound = pagination.getPageUpperBound();
+        int id = lowerBound + 1;
+
+        for (int i = lowerBound; i < upperBound; i++) {
+            Rental rental = filteredRentals.get(i);
             RentalEntry entry = new RentalEntry(id, rental);
             Button acceptButton = entry.getAcceptButton();
             acceptButton.setOnAction(event -> handleReturnRental(entry.getRental()));
@@ -68,7 +88,7 @@ public class LibrarianPanelController extends NavbarController {
         rentalsService.updateRentalStatus(rental.getId(), true);
 
         // TODO: optimize to remove element from local list and not access the database each time
-        updateCurrentRentals();
+        loadCurrentRentals();
         handleFilterRentals();
     }
 
@@ -86,6 +106,7 @@ public class LibrarianPanelController extends NavbarController {
         if (!title.isEmpty())
             filteredRentals = filteredRentals.stream().filter(rental -> rental.getBook().getTitle().startsWith(title)).toList();
 
-        updateRentalList();
+        pagination.updatePageDetails(itemsPerPage, filteredRentals.size());
+        updateItemsList();
     }
 }

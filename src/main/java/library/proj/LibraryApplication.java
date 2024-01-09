@@ -29,6 +29,7 @@ public class LibraryApplication {
             personService.savePerson(new Person("Baran", "Adamski", "baran@gmail.com", "password", Permissions.USER));
 
             addBookExamples(booksService, rentalsService, personService);
+            addRandomBooks(booksService, 40);
         });
     }
 
@@ -57,6 +58,19 @@ public class LibraryApplication {
         LocalDate oldDate1 = LocalDate.parse("2023-12-27", formatter);
         LocalDate oldDate2 = LocalDate.parse("2023-12-31", formatter);
         rentalsService.createRental(new Rental(baran, insygnia, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, insygnia, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, insygnia, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, puszcza, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, insygnia, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, puszcza, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, puszcza, oldDate1, oldDate2));
+//        rentalsService.createRental(new Rental(baran, puszcza, oldDate1, oldDate2));
+    }
+
+    private void addRandomBooks(BooksService booksService, int noBooks) {
+        for (int i = 0; i < noBooks; i++) {
+            booksService.createBook(new Book("No title", "Anonymous", "Twarda", "???", Status.AVAILABLE, "/images/no_image.png"));
+        }
     }
 
 }
