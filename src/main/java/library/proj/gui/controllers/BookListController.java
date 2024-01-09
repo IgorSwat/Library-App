@@ -11,6 +11,8 @@ import library.proj.gui.scenes.*;
 import library.proj.gui.scenes.navbar.NavButtonType;
 import library.proj.gui.scenes.navbar.Navbar;
 import library.proj.gui.scenes.objects.BookEntry;
+import library.proj.gui.scenes.pagination.PaginationBar3x;
+import library.proj.gui.scenes.pagination.PaginationHandlerIf;
 import library.proj.model.Book;
 import library.proj.model.Permissions;
 import library.proj.service.BooksService;
@@ -18,22 +20,31 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.List;
 
-public class BookListController extends NavbarController {
+public class BookListController extends NavbarController implements PaginationHandlerIf {
     private final BooksService booksService;
+
+    private List<Book> books;
 
     @FXML
     private HBox navbarField;
     private Navbar navbar = null;
 
     @FXML
+    private HBox paginationField;
+    private PaginationBar3x pagination = null;
+
+    @FXML
     private VBox bookList;
 
     private static final int maxEntriesInRow = 5;
+    private static final int maxRowsPerPage = 3;
     private static final double entriesSpacing = 50.0;
 
     public BookListController(Stage stage, ConfigurableApplicationContext context) {
         super(stage, context);
         this.booksService = context.getBean(BooksService.class);
+
+        loadBooks();
     }
 
     public void setupNavbar() {
@@ -49,14 +60,27 @@ public class BookListController extends NavbarController {
         rentalListButton.setDisable(!hasPermissions);
     }
 
-    public void updateBookList() {
+    public void setupPagination() {
+        pagination = new PaginationBar3x(maxEntriesInRow * maxRowsPerPage, books.size());
+        pagination.setupHandler(this);
+        paginationField.getChildren().add(pagination);
+    }
+
+    public void loadBooks() {
+        this.books = booksService.getAllBooks();
+    }
+
+    public void updateItemsList() {
         bookList.getChildren().clear();
 
-        List<Book> books = booksService.getAllBooks();
+        int lowerBound = pagination.getPageLowerBound();
+        int upperBound = pagination.getPageUpperBound();
+        int rowCounter = 0;
+
         HBox row = new HBox();
         row.getStyleClass().add("book-list-row");
-        int rowCounter = 0;
-        for (Book book : books) {
+        for (int i = lowerBound; i < upperBound; i++) {
+            Book book = books.get(i);
             rowCounter = (rowCounter + 1) % (maxEntriesInRow + 1);
             if (rowCounter == 0) {
                 bookList.getChildren().add(row);

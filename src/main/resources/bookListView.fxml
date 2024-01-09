@@ -13,9 +13,11 @@
         <ImageView styleClass="scrollable-panel-background" fitHeight="540" fitWidth="800">
             <Image url="/images/library-background.jpg" />
         </ImageView>
-        <ScrollPane styleClass="scroll-pane">
+        <VBox prefHeight="540" prefWidth="800">
             <VBox fx:id="bookList" styleClass="book-list" >
             </VBox>
-        </ScrollPane>
+            <HBox fx:id="paginationField" prefWidth="800" prefHeight="60">
+            </HBox>
+        </VBox>
     </StackPane>
 </VBox>

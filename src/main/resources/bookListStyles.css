@@ -16,9 +16,15 @@
 }
 
 .book-list {
+    -fx-pref-width: 800;
+    -fx-pref-height: 480;
     -fx-alignment: top-center;
     -fx-padding: 30;
     -fx-spacing: 20;
+    -fx-background-color: transparent;
+}
+
+.book-list > .viewport {
     -fx-background-color: transparent;
 }
 
