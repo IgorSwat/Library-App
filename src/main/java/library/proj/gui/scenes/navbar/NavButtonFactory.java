@@ -18,6 +18,7 @@ public class NavButtonFactory {
             case BOOK_LIST_BUTTON -> button.setOnAction(event -> controller.handleBookListRedirect());
             case RENTALS_BUTTON -> button.setOnAction(event -> controller.handleRentalListRedirect());
             case ADD_BOOK_BUTTON -> button.setOnAction(event -> controller.handleAddBookClick());
+            case RECOMMENDATIONS_BUTTON -> button.setOnAction(event -> controller.handleRecommendationsClick());
         }
         return button;
     }
@@ -32,6 +33,7 @@ public class NavButtonFactory {
             case BOOK_LIST_BUTTON -> createButton(buttonHeight, buttonWidth, "images/bookIcon.png", "Lista książek");
             case RENTALS_BUTTON -> createButton(buttonHeight, buttonWidth, "images/bookingIcon.png", "Wypożyczenia");
             case ADD_BOOK_BUTTON -> createButton(buttonHeight, buttonWidth, "images/plusIcon.png", "Dodaj książkę");
+            case RECOMMENDATIONS_BUTTON -> createButton(buttonHeight, buttonWidth, "images/recommendationsIcon.png", "Rekomendacje");
         };
     }
 
