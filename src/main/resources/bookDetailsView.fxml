@@ -60,7 +60,8 @@
             </HBox>
             <HBox styleClass="rental-button-field">
                 <Button styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBackButton" text="Wróć" />
-                <Button styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" text="Wypożycz" />
+                <Button fx:id="reserveButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleReserveBook" text="Rezerwuj" />
+                <Button fx:id="borrowButton" styleClass="rental-button" mnemonicParsing="false" onMouseClicked="#handleBorrowBook" text="Wypożycz" />
             </HBox>
         </children>
     </VBox>

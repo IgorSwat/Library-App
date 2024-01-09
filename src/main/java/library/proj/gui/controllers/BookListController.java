@@ -37,7 +37,7 @@ public class BookListController extends NavbarController {
     }
 
     public void setupNavbar() {
-        navbar = new Navbar("Lista książek", NavButtonType.ADD_BOOK_BUTTON, NavButtonType.RENTALS_BUTTON,
+        navbar = new Navbar("Lista książek", NavButtonType.ADD_BOOK_BUTTON, NavButtonType.RENTALS_BUTTON, NavButtonType.RESERVATIONS_BUTTON,
                             NavButtonType.PROFILE_BUTTON, NavButtonType.LOGOUT_BUTTON);
         navbar.linkHandlers(this);
         navbarField.getChildren().add(navbar);
