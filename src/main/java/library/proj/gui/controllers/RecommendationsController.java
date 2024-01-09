@@ -10,12 +10,13 @@ import library.proj.gui.events.ChangeSceneEvent;
 import library.proj.gui.scenes.*;
 import library.proj.gui.scenes.navbar.NavButtonType;
 import library.proj.gui.scenes.navbar.Navbar;
-import library.proj.gui.scenes.objects.BookEntry;
+import library.proj.gui.scenes.objects.RcommendationEntry;
 import library.proj.model.Book;
 import library.proj.model.Permissions;
 import library.proj.service.BooksService;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class RecommendationsController extends NavbarController{
@@ -54,21 +55,19 @@ public class RecommendationsController extends NavbarController{
     public void loadBooks() {
         this.books = booksService.getAllBooks();
         this.filteredBooks = books;
+        this.filteredBooks.sort(Comparator.comparing(Book::getRating).reversed());
     }
 
     public void updateItemsList() {
         bookList.getChildren().clear();
+        loadBooks();
 
-
-        HBox row = new HBox();
-        row.getStyleClass().add("book-list-row");
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 0; i < 5; i++) {
             Book book = filteredBooks.get(i);
-            BookEntry entry = new BookEntry(book);
+            RcommendationEntry entry = new RcommendationEntry(book);
             entry.setOnMouseClicked(mouseEvent -> handleBookDetailsClicked(mouseEvent, book));
-            row.getChildren().add(entry);
+            bookList.getChildren().add(entry);
         }
-        bookList.getChildren().add(row);
     }
 
     @FXML
