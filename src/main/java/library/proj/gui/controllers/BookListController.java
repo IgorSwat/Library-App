@@ -2,6 +2,8 @@ package library.proj.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,6 +26,14 @@ public class BookListController extends NavbarController implements PaginationHa
     private final BooksService booksService;
 
     private List<Book> books;
+    private List<Book> filteredBooks;
+
+    @FXML
+    private TextField bookAuthorField;
+    @FXML
+    private TextField bookTitleField;
+    @FXML
+    private CheckBox availableCheck;
 
     @FXML
     private HBox navbarField;
@@ -68,6 +78,7 @@ public class BookListController extends NavbarController implements PaginationHa
 
     public void loadBooks() {
         this.books = booksService.getAllBooks();
+        this.filteredBooks = books;
     }
 
     public void updateItemsList() {
@@ -80,7 +91,7 @@ public class BookListController extends NavbarController implements PaginationHa
         HBox row = new HBox();
         row.getStyleClass().add("book-list-row");
         for (int i = lowerBound; i < upperBound; i++) {
-            Book book = books.get(i);
+            Book book = filteredBooks.get(i);
             rowCounter = (rowCounter + 1) % (maxEntriesInRow + 1);
             if (rowCounter == 0) {
                 bookList.getChildren().add(row);
@@ -98,5 +109,23 @@ public class BookListController extends NavbarController implements PaginationHa
     @FXML
     public void handleBookDetailsClicked(MouseEvent event, Book book) {
         context.publishEvent(new ChangeSceneEvent(stage, context, new BookDetailsCreator(book)));
+    }
+
+    @FXML
+    public void handleFilterBooks() {
+        boolean available = availableCheck.isSelected();
+        String title = bookTitleField.getText().toLowerCase();
+        String author = bookAuthorField.getText().toLowerCase();
+
+        filteredBooks = books;
+        if (available)
+            filteredBooks = filteredBooks.stream().filter(Book::isAvailable).toList();
+        if (!title.isEmpty())
+            filteredBooks = filteredBooks.stream().filter(b -> b.getTitle().toLowerCase().startsWith(title)).toList();
+        if (!author.isEmpty())
+            filteredBooks = filteredBooks.stream().filter(b -> b.getAuthor().toLowerCase().startsWith(author)).toList();
+
+        pagination.updatePageDetails(maxEntriesInRow * maxRowsPerPage, filteredBooks.size());
+        updateItemsList();
     }
 }
