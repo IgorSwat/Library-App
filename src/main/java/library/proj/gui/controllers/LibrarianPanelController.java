@@ -95,16 +95,16 @@ public class LibrarianPanelController extends NavbarController implements Pagina
     @FXML
     public void handleFilterRentals() {
         boolean onlyExpired = expiredRentalsCheck.isSelected();
-        String person = userNameField.getText();
-        String title = bookTitleField.getText();
+        String person = userNameField.getText().toLowerCase();
+        String title = bookTitleField.getText().toLowerCase();
 
         filteredRentals = currentRentals;
         if (onlyExpired)
             filteredRentals = currentRentals.stream().filter(Rental::isExpired).toList();
         if (!person.isEmpty())
-            filteredRentals = filteredRentals.stream().filter(rental -> rental.getPerson().getFullName().contains(person)).toList();
+            filteredRentals = filteredRentals.stream().filter(rental -> rental.getPerson().getFullName().toLowerCase().contains(person)).toList();
         if (!title.isEmpty())
-            filteredRentals = filteredRentals.stream().filter(rental -> rental.getBook().getTitle().startsWith(title)).toList();
+            filteredRentals = filteredRentals.stream().filter(rental -> rental.getBook().getTitle().toLowerCase().startsWith(title)).toList();
 
         pagination.updatePageDetails(itemsPerPage, filteredRentals.size());
         updateItemsList();
