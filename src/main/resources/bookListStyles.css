@@ -60,7 +60,7 @@
 .filter-bar {
     -fx-pref-height: 40;
     -fx-pref-width: 800;
-    -fx-padding: 10;
+    -fx-padding: 5;
     -fx-alignment: center;
     -fx-background-color: #b09368;
     -fx-border-width: 0 0 3 0;
