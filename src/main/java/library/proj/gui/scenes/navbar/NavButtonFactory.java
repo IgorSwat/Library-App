@@ -18,6 +18,7 @@ public class NavButtonFactory {
             case BOOK_LIST_BUTTON -> button.setOnAction(event -> controller.handleBookListRedirect());
             case RENTALS_BUTTON -> button.setOnAction(event -> controller.handleRentalListRedirect());
             case ADD_BOOK_BUTTON -> button.setOnAction(event -> controller.handleAddBookClick());
+            case RESERVATIONS_BUTTON -> button.setOnAction(event -> controller.handleReservationsClick());
         }
         return button;
     }

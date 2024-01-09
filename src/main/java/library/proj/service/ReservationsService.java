@@ -37,6 +37,12 @@ public class ReservationsService {
         return  reservationsRepository.findAllByPerson(person).stream().filter(Reservation::isActive).toList();
     }
 
+    public void updateReservationActiveness(Reservation reservation, boolean isActive){
+        Reservation reservationEntity = reservationsRepository.findById(reservation.getId());
+        reservationEntity.setActive(isActive);
+        reservationsRepository.save(reservationEntity);
+    }
+
     public List<Reservation> getAllReservationsByBook(Book book){
         return  reservationsRepository.findAllByBook(book);
     }

@@ -49,4 +49,5 @@ public class Reservation {
     public boolean overlaps(LocalDate from, LocalDate to){
          return !(from.isAfter(endDate) || to.isBefore(startDate)) ;
     }
+
 }
