@@ -505,6 +505,87 @@ Klasa BookEntry dziedziczy po klasie VBox z JavaFX
 - **Konstruktor**:
     - *public BookEntry(Book book)*: Konstruktor, inicjalizuje pola klasy.
 
-## 10. Graf
+## 10. Pakiet: *library.proj.gui.scenes.navbar*
+### 10.1 NavButtonType
+Wyliczenie definiujące dostępne typy przycisków paska nawigacji
+
+### 10.2  NavButtonFactory
+Klasa fabryki tworząca przyciski paska nawigacji.
+- **Metody**:
+  - *public Button linkHandler(Button button, NavButtonType type, NavbarController controller)*: Metoda nadająca przyciskowi handlera zgodnie z przeznaczeniem przycisku
+  - *public Button createButton(NavButtonType type)*: Tworzy nowy przycisk
+  - *private Button createButton(double height, double width, String iconPath, String tooltipText)*: Pomocnicza metoda tworzenia przycisku
+
+### 10.3 Navbar
+Klasa reprezentująca pasek nawigacji
+- **Pola**:
+  - *private final int noButtons*: liczba używanych przycisków
+  - *private final Button[] buttons*: tablica agregująca używane przyciski
+  - *private static final NavButtonFactory buttonsFactory*: Fabryka przycisków - wspólna dla wszystkich obiektów typu Navbar
+- **Metody**:
+  - *public Navbar(String name, NavButtonType... buttonTypes)*: Konstruktor przyjmujący nazwę widoku (wyświetlaną na pasku nawigacyjnym) oraz typy przycisków do dodania
+  - *public void linkHandlers(NavbarController controller)*: Łączy przyciski z odpowiednimi handlerami przy użyciu buttonsFactory
+  - *public Button getButton(NavButtonType type)*: Getter do poszczególnych przycisków na wypadek konieczności wyspecjalizowania jakiś dodatkowych interakcji
+
+## 11. Pakiet: *library.proj.gui.scenes.pagination*
+### 11.1 PaginationHandlerIf
+Interfejs widoku zarządzającego paginacją. Ideą jest wielokrotne użycie obiektów klas paginacji, także przez różne widoki.
+Użycie interfejsu pozwala odciąć się od konkretnego widoku i uogólnić implementację paginacji.
+
+### 11.2  PaginationBar
+Abstrakcyjna klasa wyodrębniająca pewne wspólne cechy pasków z paginacją - w zamyśle rozwiązanie to ma stwarzać możliwość
+łatwiejszego rozszerzania paginacji na paski z różną ilością lub ułożeniem przycisków.
+- **Pola**:
+  - *protected int currPageId*: Numer aktualnie wyświetlanej strony (numerowanie od 1 w górę)
+  - *protected int elementsPerPage*: Liczba elementów wyświetlanych na jednej stronie
+  - *protected int totalNoElements*: Łączna liczba wszystkich elementów (służy do obliczania pewnych przypadków brzegowych)
+  - *protected int maxPageId*: Maksymalny możliwy numer strony (przy danej liczbie elementów)
+- **Metody**:
+  - *public abstract void setupHandler(PaginationHandlerIf handler)*: Przypisanie handlera do przycisków. Z uwagi na nieznaną ilość i rozmieszczenie przycisków, metoda jest implementowana przez klasy pochodne
+  - *public void updatePageDetails(int elementsPerPage, int totalNoElements)*: Aktualizacja składowych na bazie nowych parametrów ilości elementów
+  - *public abstract void updateButtonsState(int pageId)*: Podobnie jak setupHandler(), metoda pozostawia klasom pochodnym swobodę w obsługiwaniu przycisków paginacji
+  - *public int getPageLowerBound()*: Indeks pierwszego wyświetlanego aktualnie elementu (indeksowanie od 0)
+  - *public int getPageUpperBound()*: Indeks pierwszego elementu za ostatnim aktualnie wyświetlanym 
+
+### 11.3 PaginationBar3x
+Konkretna instancja panelu paginacji - z trzema przyciskami (jeden wstecz, jeden w przód)
+- **Pola**:
+  - *private final Button leftButton*: Lewy przycisk (wstecz)
+  - *private final Button centralButton*: Środkowy przycisk (aktualna strona)
+  - *private final Button rightButton*: Prawy przycisk (naprzód)
+- **Metody**:
+  - *public PaginationBar3x(int elementsPerPage, int totalNoElements)*: Konstruktor - tworzy, stylizuje przyciski i ustawia parametry stron
+
+## 12. Pakiet: *library.proj.gui.scenes.rating*
+### 12.1 StarPanelIf
+Interfejs pozwalający na generalizację użycia różnych paneli z oceną.
+
+### 12.2 RatingHandlerIf
+Zastosowanie identyczne jak PaginationHandlerIf (11.1)
+
+### 12.3 Star
+Klasa reprezentująca pojedynczą gwiazdę panelu z gwiazdkami.
+- **Metody**:
+  - *public Star(double originX, double originY, double width, double height)*: Konstruktor, tworzy gwiazdkę na podstawie obiektu Polygon
+  - *public void setHandlers(int starId, StarPanelIf panel)*: Pozwala przypisać metody reagujące na interakcje z gwiazdką (najechanie myszką, kliknięcie)
+  - *public void applyStyle(String style)*: Przypisuje gwiazdce styl, o ile nie został już wcześniej przypisany
+
+### 12.4  RatingPanel
+Klasa reprezentująca panel oceny z (pięcioma) interaktywnymi gwiazdkami.
+- **Pola**:
+  - *private final RatingHandlerIf ratingHandler*
+  - *private final ArrayList<Star> stars*
+  - *private final HBox removeIcon*: Przycisk usuwania wystawionej oceny, wyświetlany po wystawieniu oceny
+- **Metody**:
+  - *public abstract void setupHandler(PaginationHandlerIf handler)*: Przypisanie handlera do przycisków. Z uwagi na nieznaną ilość i rozmieszczenie przycisków, metoda jest implementowana przez klasy pochodne
+  - *public void setRating(int rating)*: Ustawia podaną wartość oceny
+  - *public void handleMouseEnter(int starId)*
+  - *public void handleMouseExit(int starId)*
+  - *public void handleClick(int starId)*
+  - *public void handleRemove()*: Handler usunięcia oceny (kliknięcia w przycisk usunięcia oceny)
+  - *private void activateStars(int lastStar)*: Pomocnicza funkcja aktywacji (dodania odpowiedniego stylu) wszystkich gwiazdek aż do podanej (od lewej)
+  - *private void deactivateStars()*: Pomocnicza funkcja wyłączenia wszystkich gwiazdek
+
+## 13. Graf
 >Poniżej przedstawiono graf zależności między klasami w projekcie wygenerowany przez IntelliJ IDEA.
 ![Graf zależności między klasami](Model%20obiektowy%20graf%20-%20jasny.png)
