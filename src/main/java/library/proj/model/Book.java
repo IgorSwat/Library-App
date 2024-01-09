@@ -69,6 +69,15 @@ public class Book {
         ratings.add(rating);
     }
 
+    public double getRating() {
+        if (ratings == null || ratings.isEmpty())
+            return 0.0;
+        double sum = 0.0;
+        for (Rating rating : ratings)
+            sum += rating.getRating();
+        return sum / ratings.size();
+    }
+
     public boolean isAvailable() {
         return status == Status.AVAILABLE;
     }
