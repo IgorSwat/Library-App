@@ -1,0 +1,60 @@
+.scrollable-panel-container {
+}
+
+.scrollable-panel-background {
+    -fx-fit-to-width: 800;
+    -fx-fit-to-height: 540;
+    -fx-opacity: 0.45;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.book-list {
+    -fx-pref-width: 800;
+    -fx-pref-height: 540;
+    -fx-alignment: top-center;
+    -fx-padding: 20 30 20 30;
+    -fx-spacing: 10;
+    -fx-background-color: transparent;
+}
+
+.book-list > .viewport {
+    -fx-background-color: transparent;
+}
+
+.author-box {
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+
+.recommendation-entry {
+    -fx-background-color: #ccb491;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 5, 5);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 15;
+    -fx-border-color: transparent;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-spacing: 30;
+}
+
+.recommendation-entry:hover {
+    -fx-background-color: #edc993;
+    -fx-cursor: hand;
+}
+
+.book-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.book-author {
+    -fx-font-size: 13px;
+}

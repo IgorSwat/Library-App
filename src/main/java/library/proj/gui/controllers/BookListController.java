@@ -58,7 +58,8 @@ public class BookListController extends NavbarController implements PaginationHa
     }
 
     public void setupNavbar() {
-        navbar = new Navbar("Lista książek", NavButtonType.ADD_BOOK_BUTTON, NavButtonType.RENTALS_BUTTON, NavButtonType.RESERVATIONS_BUTTON,
+        navbar = new Navbar("Lista książek", NavButtonType.ADD_BOOK_BUTTON, NavButtonType.RENTALS_BUTTON, NavButtonType.RESERVATIONS_BUTTON,NavButtonType.PROFILE_BUTTON, NavButtonType.LOGOUT_BUTTON);
+        navbar = new Navbar("Lista książek", NavButtonType.ADD_BOOK_BUTTON, NavButtonType.RECOMMENDATIONS_BUTTON, NavButtonType.RENTALS_BUTTON,
                             NavButtonType.PROFILE_BUTTON, NavButtonType.LOGOUT_BUTTON);
         navbar.linkHandlers(this);
         navbarField.getChildren().add(navbar);
