@@ -25,6 +25,14 @@ Projekt polega na stworzeniu aplikacji wolnostojącej, która będzie symulować
 - [x] Panel bibliotekarza(kto jakie ma wypożyczenia, muszą być wszystkie uprawnienia zaimplementowane)
 - [x] Formularz dodawania nowej książki(przez bibliotekarza)
 
+## M3 - TODO
+- [x] FIltrowanie listy książek
+- [x] Notyfikacje
+- [x] Rezerwacje na książki
+- [x] Ocenianie książek
+- [x] Rekomendacje książek
+- [x] Statystyki
+
 ## Technologie
 Język programowania: Java\
 Framework: Spring\
