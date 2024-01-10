@@ -52,11 +52,16 @@ public class BookDetailsController extends NavbarController implements RatingHan
     @FXML
     private Label statusField;
     @FXML
+    private Label infoLabel;
+    @FXML
     private ImageView imageViewField;
     @FXML
     private Button reserveButton;
     @FXML
     private Button borrowButton;
+
+    @FXML
+    private Button notifyButton;
 
 
     public BookDetailsController(Stage stage, ConfigurableApplicationContext context, Book book) {
@@ -121,6 +126,12 @@ public class BookDetailsController extends NavbarController implements RatingHan
         statusField.setText(book.getStatus().toString());
         Image img = new Image(book.getImagePath());
         imageViewField.setImage(img);
+        if (LoginController.loggedAccount.getPermissions() == Permissions.USER) {
+            borrowButton.setDisable(true);
+        }
+        if(this.book.isAvailable()){
+            notifyButton.setDisable(true);
+        }
     }
 
     public void handleRatingSet(int rating) {
@@ -147,6 +158,12 @@ public class BookDetailsController extends NavbarController implements RatingHan
     @FXML
     private void handleBackButton() {
         context.publishEvent(new ChangeSceneEvent(stage, context, new BookListCreator()));
+    }
+
+    @FXML
+    private void handleNotify() {
+        book.addNotifyPerson(LoginController.loggedAccount);
+        infoLabel.setText("Zostaniesz powiadomiony gdy książka będzie dostępna.");
     }
 
     @FXML

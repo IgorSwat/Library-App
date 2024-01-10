@@ -1,5 +1,6 @@
 package library.proj.gui.controllers;
 
+import jakarta.mail.MessagingException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -12,6 +13,7 @@ import library.proj.gui.scenes.navbar.Navbar;
 import library.proj.gui.scenes.objects.RentalEntry;
 import library.proj.gui.scenes.pagination.PaginationBar3x;
 import library.proj.gui.scenes.pagination.PaginationHandlerIf;
+import library.proj.model.Person;
 import library.proj.model.Rental;
 import library.proj.service.RentalsService;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -86,7 +88,13 @@ public class LibrarianPanelController extends NavbarController implements Pagina
 
     public void handleReturnRental(Rental rental) {
         rentalsService.updateRentalStatus(rental.getId(), true);
-
+        try {
+            rental.getBook().notifyPerson();
+        } catch (javax.mail.MessagingException e) {
+            System.out.println("nie wyslano");
+            System.out.println(e);
+            throw new RuntimeException(e);
+        }
         // TODO: optimize to remove element from local list and not access the database each time
         loadCurrentRentals();
         handleFilterRentals();
