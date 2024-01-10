@@ -90,8 +90,10 @@ public class LibrarianPanelController extends NavbarController implements Pagina
         rentalsService.updateRentalStatus(rental.getId(), true);
         try {
             rental.getBook().notifyPerson();
-        } catch (MessagingException e) {
-            System.out.println(" ");
+        } catch (javax.mail.MessagingException e) {
+            System.out.println("nie wyslano");
+            System.out.println(e);
+            throw new RuntimeException(e);
         }
         // TODO: optimize to remove element from local list and not access the database each time
         loadCurrentRentals();

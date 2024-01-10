@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox fx:id="navbarField">
+    </HBox>
+   <ComboBox fx:id="comboBox" prefWidth="150.0" />
+   <HBox fx:id="chartHolder" alignment="CENTER" minHeight="400.0" prefHeight="100.0" prefWidth="200.0" />
+</VBox>

@@ -28,6 +28,9 @@ dependencies {
 	implementation 'org.openjfx:javafx-controls:17.0.0.1'
 	implementation 'org.openjfx:javafx-fxml:17.0.0.1'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'javax.activation:javax.activation-api:1.2.0'
+	implementation 'com.sun.activation:javax.activation:1.2.0'
+	implementation files('./javax.mail.jar')
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

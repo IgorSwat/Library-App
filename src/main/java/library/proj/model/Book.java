@@ -1,8 +1,14 @@
 package library.proj.model;
 
-import jakarta.mail.*;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+//import jakarta.mail.*;
+//import jakarta.mail.internet.InternetAddress;
+//import jakarta.mail.internet.MimeMessage;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -72,22 +78,33 @@ public class Book {
 
     public void notifyPerson() throws MessagingException {
         Person pers=getPersonToNotify();
+        String myEmail="czytelniaczytelniowa@gmail.com";
+        String myPassword="iagp ctwt veko ense";
         if (pers!=null){
             System.out.println("wysyłam mail");
-            Properties prop = new Properties();
-            prop.put("mail.smtp.host", "smtp.gmail.com");
-            prop.put("mail.smtp.port", "587");
-            prop.put("mail.smtp.auth", "true");
-            prop.put("mail.smtp.starttls.enable", "true");
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.user", myEmail);
+            props.put("mail.smtp.debug", "true");
+            props.put("mail.smtp.socketFactory.fallback", "false");
 
-            Session session = Session.getInstance(prop,
-                    new Authenticator() {
+
+
+            Session session = Session.getDefaultInstance(props,
+                    new javax.mail.Authenticator() {
+                        @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("username@abc.pl", "password");
+                            return new PasswordAuthentication(myEmail, myPassword);
                         }
                     });
+            session.setDebug(true);
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("czytelnia@agh.com"));
+            message.setFrom(new InternetAddress(myEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(pers.getEmail()));
             message.setSubject("Dostępność książki");
             message.setText("Twoja książka "+title+ " jest już dostepna");

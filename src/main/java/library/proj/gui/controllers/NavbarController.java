@@ -46,4 +46,8 @@ public abstract class NavbarController {
     public void handleRecommendationsClick() {
         context.publishEvent(new ChangeSceneEvent(stage, context, new RecommendationsCreator()));
     }
+
+    public void handleStatsClick(){
+        context.publishEvent(new ChangeSceneEvent(stage,context,new StatsCreator()));
+    }
 }
